@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:columnCount="2"
+    android:rowCount="2"
+    android:alignmentMode="alignMargins"
+    android:layout_width="match_parent"
+    android:layout_height="320dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/c_plus_plus_card"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_margin="16dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/c_plus_plus_logo_96px"
+            android:background="@drawable/card_style"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/java_card"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_margin="16dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/java_coffee_cup_logo_96px"
+            android:background="@drawable/card_style"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/java_script_card"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_margin="16dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/javascript_96px"
+            android:background="@drawable/card_style"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/c_sharp_card"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_margin="16dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/card_style"/>
+
+    </androidx.cardview.widget.CardView>
+
+</GridLayout>

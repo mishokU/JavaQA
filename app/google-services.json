@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "638076192031",
+    "firebase_url": "https://javaqa-e226d.firebaseio.com",
+    "project_id": "javaqa-e226d",
+    "storage_bucket": "javaqa-e226d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638076192031:android:fcb42860bd30ddcd",
+        "android_client_info": {
+          "package_name": "com.example.javaqa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638076192031-3htk9u960vss4m7vh44r6cr5ko567b7c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.javaqa",
+            "certificate_hash": "981184a8c66ad00900c49dbb0da27460c6a773e5"
+          }
+        },
+        {
+          "client_id": "638076192031-9v82akd932vvro35fa3al77vnrh090of.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFFolMVBgvcOUslI9aELsWHmsCrJv15dw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638076192031-9v82akd932vvro35fa3al77vnrh090of.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

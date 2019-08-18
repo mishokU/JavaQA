@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.javaqa.activities.MainActivity;
 import com.example.javaqa.ActivityUtils.LaunchActivityHelper;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignIn implements UserAuthentication {
 
@@ -22,7 +23,14 @@ public class SignIn implements UserAuthentication {
 
     public SignIn(Activity activity){
         this.activity = activity;
-        authentication();
+    }
+
+    public boolean checkOnSignIn(){
+        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
+        if(currentUser == null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -58,6 +66,7 @@ public class SignIn implements UserAuthentication {
                     if(task.isSuccessful()){
                         progress.hide();
                         new LaunchActivityHelper(activity, MainActivity.class, Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        activity.finish();
                     } else {
                         progress.hide();
                         Toast.makeText(activity, "Не удалось войти.", Toast.LENGTH_SHORT).show();

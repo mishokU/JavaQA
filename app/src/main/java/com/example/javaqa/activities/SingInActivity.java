@@ -57,6 +57,7 @@ public class SingInActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if(v == mSignInButton){
             if(mSignIn.checkData(mUserName, mPassword,null,null)){
+                mSignIn.authentication();
                 mSignIn.startProgressDialog(this);
                 mSignIn.toAccount();
             }

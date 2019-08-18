@@ -1,76 +1,656 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:columnCount="2"
-    android:rowCount="2"
-    android:alignmentMode="alignMargins"
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="320dp">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/c_plus_plus_card"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        android:layout_margin="16dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/end_bg_grad">
 
-        <ImageView
+        <androidx.appcompat.widget.SearchView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/c_plus_plus_logo_96px"
-            android:background="@drawable/card_style"/>
+            android:layout_height="40dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/style_to_search"
+            app:defaultQueryHint="Search..."
+            app:iconifiedByDefault="false"
+            android:layout_centerVertical="true">
 
+        </androidx.appcompat.widget.SearchView>
 
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/java_card"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        android:layout_margin="16dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <ImageView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/java_core"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/java_coffee_cup_logo_96px"
-            android:background="@drawable/card_style"/>
+            android:background="@color/light_grey"
+            android:elevation="3dp"
+            android:layout_height="148dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name_of_block"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:text="Java Core"/>
 
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:text="Settings"
+                />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/java_script_card"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        android:layout_margin="16dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1">
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_below="@id/name_of_block"
+                android:layout_height="match_parent">
 
-        <ImageButton
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="100dp"
+                        android:id="@+id/introduction_to_java_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/start_48px"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:id="@+id/introduction_to_java"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/introduction_to_java"
+                            android:text="Introduction"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/download_idea_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture2"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/idea_48px"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture2"
+                            android:text="Download IDEA"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/basic_syntax_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture3"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/a32bit_48px"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture3"
+                            android:text="Basic Syntax"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/type_of_data_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture4"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/type_48px"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture4"
+                            android:text="Data types"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/types_of_variables_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture5"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/heat_map_48px"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture5"
+                            android:text="Types of variables"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/modifiers_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture6"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/metamorphose_48px"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture6"
+                            android:text="Modifiers"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/classes_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture7"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/flow_chart_48px"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture7"
+                            android:text="Classes"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/version_control_systems"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/javascript_96px"
-            android:background="@drawable/card_style"/>
+            android:background="@color/light_grey"
+            android:layout_marginTop="10dp"
+            android:elevation="3dp"
+            android:layout_height="148dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name_of_block2"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:text="Version Control Systems"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:text="Settings"
+                />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/name_of_block2">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/git_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture8"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/git_100px"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture8"
+                            android:text="Git"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/docker_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture10"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/docker_icon"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture10"
+                            android:text="Docker"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/subversion_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture11"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/subversion_logo"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture11"
+                            android:text="Subversion"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/jenkins_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture12"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/jenkins"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture12"
+                            android:text="Jenkins"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
 
 
-    </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/c_sharp_card"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        android:layout_margin="16dp"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1">
 
-        <ImageView
+            </HorizontalScrollView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/build_tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/card_style"/>
+            android:background="@color/light_grey"
+            android:layout_marginTop="10dp"
+            android:elevation="3dp"
+            android:layout_height="148dp">
 
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/build_tools_block"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:text="Build Tools"/>
 
-</GridLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:text="Settings"
+                />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/build_tools_block">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/gradle_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture9"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/gradle_icon"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture9"
+                            android:text="Gradle"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/maven_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture13"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/maven_logo"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture13"
+                            android:text="Maven"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="128dp"
+                        android:id="@+id/custom_block"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:id="@+id/picture14"
+                            android:scaleType="centerInside"
+                            android:background="@drawable/learning_item_level_style"
+                            android:src="@drawable/customer_insight_128px"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/picture14"
+                            android:text="Custom"
+                            android:layout_centerHorizontal="true"/>
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+            </HorizontalScrollView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/data_base"
+            android:layout_width="match_parent"
+            android:background="@color/light_grey"
+            android:layout_marginTop="10dp"
+            android:elevation="3dp"
+            android:layout_height="148dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/data_base_block"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:text="Databases"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:text="Settings"
+                />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/data_base_block">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_width="128dp"
+                            android:id="@+id/firebase_block"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:id="@+id/picture15"
+                                android:scaleType="centerInside"
+                                android:background="@drawable/learning_item_level_style"
+                                android:src="@drawable/customer_insight_128px"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/picture15"
+                                android:text="Firebase"
+                                android:layout_centerHorizontal="true"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="128dp"
+                            android:id="@+id/hibernate_block"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:id="@+id/picture16"
+                                android:scaleType="centerInside"
+                                android:background="@drawable/learning_item_level_style"
+                                android:src="@drawable/customer_insight_128px"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/picture16"
+                                android:text="Hibernate"
+                                android:layout_centerHorizontal="true"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="128dp"
+                            android:id="@+id/spring_block"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:id="@+id/picture18"
+                                android:scaleType="centerInside"
+                                android:background="@drawable/learning_item_level_style"
+                                android:src="@drawable/customer_insight_128px"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/picture18"
+                                android:text="Spring"
+                                android:layout_centerHorizontal="true"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="128dp"
+                            android:id="@+id/sql_block"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="64dp"
+                                android:layout_height="64dp"
+                                android:id="@+id/picture17"
+                                android:scaleType="centerInside"
+                                android:background="@drawable/learning_item_level_style"
+                                android:src="@drawable/customer_insight_128px"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/picture17"
+                                android:text="SQL"
+                                android:layout_centerHorizontal="true"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+        </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

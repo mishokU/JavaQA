@@ -59,6 +59,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         if(v == mRegistrationButton) {
             if(mRegistration.checkData(mUserName,mPassword,mRepeatPassword,mEmail)){
+                mRegistration.authentication();
                 mRegistration.startProgressDialog(this);
                 mRegistration.toAccount();
             }

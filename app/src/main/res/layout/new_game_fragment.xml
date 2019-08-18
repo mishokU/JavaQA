@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/custom_toolbar"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/end_bg_grad">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_friend_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/style_to_search"
+            app:defaultQueryHint="Search..."
+            app:iconifiedByDefault="false"
+            android:layout_centerVertical="true">
+
+        </androidx.appcompat.widget.SearchView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/random_player_button"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/start_button_style"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/image_dice"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:scaleType="centerInside"
+                android:background="@drawable/start_facebook_button_style"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/dice_26px"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Случайный игрок"
+                android:textSize="28sp"
+                android:textColor="@color/white"
+                android:layout_toEndOf="@+id/image_dice"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/start_facebook_button_style"
+                android:src="@drawable/forward_24px"
+                android:layout_centerVertical="true"
+                android:scaleType="centerInside"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/facebook_player_button"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/blue_button_game_style"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/image_facebook"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:scaleType="centerInside"
+                android:background="@drawable/start_facebook_button_style"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/facebook_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Друзья из Facebook"
+                android:textSize="26sp"
+                android:textColor="@color/white"
+                android:layout_toEndOf="@+id/image_facebook"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/start_facebook_button_style"
+                android:src="@drawable/forward_24px"
+                android:layout_centerVertical="true"
+                android:scaleType="centerInside"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/invite_new_player_button"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/blue_button_game_style"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/image_invite"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:scaleType="centerInside"
+                android:background="@drawable/start_facebook_button_style"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/add_user_24px"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Пригласить"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:layout_centerHorizontal="true"
+                android:layout_toEndOf="@+id/image_invite"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/start_facebook_button_style"
+                android:src="@drawable/forward_24px"
+                android:layout_centerVertical="true"
+                android:scaleType="centerInside"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/friend_layout"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/title_to_friend_list"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="25dp">
+
+            <View
+                android:id="@+id/stick"
+                android:layout_marginStart="5dp"
+                android:layout_width="2dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:background="@color/end_bg_grad"/>
+
+            <TextView
+                android:layout_toEndOf="@id/stick"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Список друзей"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Изменить"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@id/change_friend_list"/>
+
+            <ImageButton
+                android:id="@+id/change_friend_list"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/cancel_2_24px"
+                android:layout_marginEnd="5dp"
+                android:layout_alignParentEnd="true"
+                />
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/friend_recycler_view_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+</LinearLayout>

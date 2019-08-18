@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="profile"
+        android:icon="@drawable/user_48px"
+        app:showAsAction="always"
+        android:id="@+id/profile"/>
+
+    <item
+        app:showAsAction="always"
+        android:icon="@drawable/filled_appointment_reminders_60px"
+        android:title="notifications"
+        android:id="@+id/notifications"/>
+
+    <item
+        app:showAsAction="never"
+        android:id="@+id/list_of_leaders"
+        android:title="Список лидеров"/>
+
+    <item
+        android:id="@+id/review"
+        android:title="Отзыв"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/estimate"
+        android:title="Оценить"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/invite_friends"
+        android:title="Пригласить друзей"
+        app:showAsAction="never"/>
+
+    <item
+        app:showAsAction="never"
+        android:id="@+id/settings"
+        android:title="Настройки"/>
+
+</menu>

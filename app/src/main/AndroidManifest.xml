@@ -11,6 +11,11 @@
         android:fullBackupContent="@xml/backup_descriptor"
         android:allowBackup="true">
         <activity android:name=".activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".activities.SingInActivity"/>
@@ -18,12 +23,11 @@
         <activity android:name=".activities.RegistrationActivity"/>
 
         <activity android:name=".activities.StartActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
+
+        <activity android:name=".activities.NewGameActivity"/>
+        <activity android:name=".activities.ProfileActivity"/>
 
     </application>
 

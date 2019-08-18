@@ -38,21 +38,19 @@ public class Registration implements UserAuthentication {
         mAuth = FirebaseAuth.getInstance();
     }
 
-
     @Override
     public void toAccount() {
         mAuth.createUserWithEmailAndPassword(mEmail,mPassword).addOnCompleteListener(task -> {
             if(task.isSuccessful()) {
-
+                System.out.println("Hi1");
                 FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                assert firebaseUser != null;
                 String user_id = firebaseUser.getUid();
 
                 mReference = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
 
                 createAccount();
-
             } else {
+                System.out.println("Hi1 ");
                 progress.hide();
                 Toast.makeText(activity,"Can not register with email and password!", Toast.LENGTH_SHORT).show();
             }
@@ -69,6 +67,7 @@ public class Registration implements UserAuthentication {
             if(task.isSuccessful()){
                 progress.dismiss();
                 new LaunchActivityHelper(activity, MainActivity.class, Intent.FLAG_ACTIVITY_NO_HISTORY);
+                activity.finish();
             }
         });
     }

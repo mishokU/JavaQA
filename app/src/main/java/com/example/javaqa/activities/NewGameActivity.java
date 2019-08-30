@@ -1,19 +1,13 @@
 package com.example.javaqa.activities;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +16,6 @@ import com.example.javaqa.adapters.FriendMainListAdapter;
 import com.example.javaqa.items.FriendItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -42,7 +35,7 @@ public class NewGameActivity extends AppCompatActivity implements View.OnClickLi
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.new_game_fragment);
+    setContentView(R.layout.fragment_new_game);
     ButterKnife.bind(this);
 
     findViews();

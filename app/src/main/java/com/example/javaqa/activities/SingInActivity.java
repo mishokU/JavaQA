@@ -28,7 +28,7 @@ public class SingInActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_in_activity);
+        setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
         mSignIn = new SignIn(this);
         mSignInButton.setOnClickListener(this);

@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_margin="5dp"
         android:orientation="vertical"
+        android:contextClickable="true"
         android:layout_height="match_parent">
 
         <RelativeLayout
@@ -67,15 +68,19 @@
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_below="@id/name_of_block"
+                android:id="@+id/java_core_scroll_view"
                 android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
+                    android:id="@+id/java_core_linear_layout"
                     android:layout_height="match_parent">
 
                     <RelativeLayout
-                        android:layout_width="100dp"
-                        android:id="@+id/introduction_to_java_block"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/introduction"
+                        android:background="@drawable/item_file"
+                        android:layout_marginStart="10dp"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -98,8 +103,10 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="128dp"
-                        android:id="@+id/download_idea_block"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/item_file"
+                        android:id="@+id/download"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -122,8 +129,10 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="128dp"
-                        android:id="@+id/basic_syntax_block"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/basicsyntax"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/item_file"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -146,8 +155,10 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="128dp"
-                        android:id="@+id/type_of_data_block"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/type_of_data"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/item_file"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -170,8 +181,10 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="128dp"
-                        android:id="@+id/types_of_variables_block"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/types_of_variables"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/item_file"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -194,8 +207,12 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="128dp"
+                        android:layout_width="wrap_content"
                         android:id="@+id/modifiers_block"
+                        android:layout_marginStart="10dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:background="@drawable/item_file"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -218,8 +235,12 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="128dp"
+                        android:layout_width="wrap_content"
                         android:id="@+id/classes_block"
+                        android:layout_marginStart="10dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:background="@drawable/item_file"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -283,11 +304,16 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
+                    android:id="@+id/version_control_systems_linear_layout"
                     android:layout_height="match_parent">
 
                     <RelativeLayout
-                        android:layout_width="128dp"
+                        android:layout_width="wrap_content"
                         android:id="@+id/git_block"
+                        android:layout_marginStart="10dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:background="@drawable/item_file"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -310,8 +336,11 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="128dp"
+                        android:layout_width="wrap_content"
                         android:id="@+id/docker_block"
+                        android:background="@drawable/item_file"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -334,8 +363,12 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="128dp"
+                        android:layout_width="wrap_content"
                         android:id="@+id/subversion_block"
+
+                        android:background="@drawable/item_file"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -358,8 +391,11 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="128dp"
+                        android:layout_width="wrap_content"
                         android:id="@+id/jenkins_block"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:background="@drawable/item_file"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -425,11 +461,16 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
+                    android:id="@+id/build_tools_linear_layout"
                     android:layout_height="match_parent">
 
                     <RelativeLayout
-                        android:layout_width="128dp"
+                        android:layout_width="wrap_content"
                         android:id="@+id/gradle_block"
+                        android:layout_marginStart="10dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:background="@drawable/item_file"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -452,8 +493,11 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="128dp"
+                        android:layout_width="wrap_content"
                         android:id="@+id/maven_block"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:background="@drawable/item_file"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -476,8 +520,11 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="128dp"
+                        android:layout_width="wrap_content"
                         android:id="@+id/custom_block"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:background="@drawable/item_file"
                         android:layout_height="match_parent">
 
                         <ImageView
@@ -542,12 +589,17 @@
                     android:layout_below="@id/data_base_block">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/data_base_linear_layout"
                         android:layout_height="match_parent">
 
                         <RelativeLayout
-                            android:layout_width="128dp"
+                            android:layout_width="wrap_content"
                             android:id="@+id/firebase_block"
+                            android:layout_marginStart="10dp"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:background="@drawable/item_file"
                             android:layout_height="match_parent">
 
                             <ImageView
@@ -570,8 +622,11 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:layout_width="128dp"
+                            android:layout_width="wrap_content"
                             android:id="@+id/hibernate_block"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:background="@drawable/item_file"
                             android:layout_height="match_parent">
 
                             <ImageView
@@ -594,8 +649,11 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:layout_width="128dp"
+                            android:layout_width="wrap_content"
                             android:id="@+id/spring_block"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:background="@drawable/item_file"
                             android:layout_height="match_parent">
 
                             <ImageView
@@ -618,8 +676,11 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:layout_width="128dp"
+                            android:layout_width="wrap_content"
                             android:id="@+id/sql_block"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:background="@drawable/item_file"
                             android:layout_height="match_parent">
 
                             <ImageView

@@ -8,10 +8,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.javaqa.R;
 import com.example.javaqa.adapters.ConversationAdapter;
@@ -19,30 +19,31 @@ import com.example.javaqa.items.ConversationItem;
 
 import java.util.ArrayList;
 
-public class ConversationFragment extends Fragment {
+public class ProfilePostFragment extends Fragment {
 
   private View view;
   private RecyclerView recyclerView;
-  private SearchView searchView;
 
   private RecyclerView.Adapter adapter;
   private RecyclerView.LayoutManager layoutManager;
   private ArrayList<ConversationItem> conversationItems;
+  private SwipeRefreshLayout swipeRefreshLayout;
+
 
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    view = inflater.inflate(R.layout.fragment_conversation,container,false);
+    view = inflater.inflate(R.layout.fragment_profile_posts,container,false);
 
-    findAllViews();
+    findViews();
     setUpAdapter();
 
     return view;
   }
 
-  private void findAllViews() {
-    recyclerView = view.findViewById(R.id.public_conversation_place);
-    searchView = view.findViewById(R.id.search_conversation);
+  private void findViews() {
+    recyclerView = view.findViewById(R.id.profile_posts_recycler_view);
+    swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
   }
 
   private void setUpAdapter() {
@@ -54,6 +55,11 @@ public class ConversationFragment extends Fragment {
     conversationItems.add(new ConversationItem());
     conversationItems.add(new ConversationItem());
     conversationItems.add(new ConversationItem());
+    conversationItems.add(new ConversationItem());
+    conversationItems.add(new ConversationItem());
+    conversationItems.add(new ConversationItem());
+    conversationItems.add(new ConversationItem());
+    conversationItems.add(new ConversationItem());
 
     recyclerView.setHasFixedSize(true);
     recyclerView.setLayoutManager(layoutManager);
@@ -62,4 +68,5 @@ public class ConversationFragment extends Fragment {
     ((ConversationAdapter) adapter).setOnItemClickListener(position ->
         Toast.makeText(getContext(),"Clicked" + position,Toast.LENGTH_SHORT).show());
   }
+
 }

@@ -30,7 +30,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.registration_activity);
+        setContentView(R.layout.activity_registration);
         ButterKnife.bind(this);
         mRegistration = new Registration(this);
         mRegistrationButton.setOnClickListener(this);

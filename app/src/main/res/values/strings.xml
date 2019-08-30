@@ -5,4 +5,9 @@
     <string name="password">Password</string>
     <string name="username">Username</string>
     <string name="sing_in">Sing in</string>
+    <string name="check">Проверить</string>
+    <string name="first_question">Какой девиз Java?</string>
+    <string name="write_once_run_anywhere">Write Once, Run Everywhere</string>
+    <string name="write_once_run_nowhere">Write Once, Run Nowhere</string>
+    <string name="take_hard_make_work">Take hard, Make work</string>
 </resources>

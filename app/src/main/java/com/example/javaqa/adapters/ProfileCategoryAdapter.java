@@ -8,46 +8,43 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.javaqa.R;
-import com.example.javaqa.holders.FriendItemHolder;
-import com.example.javaqa.items.FriendItem;
+import com.example.javaqa.holders.ProfileCategoryItemHolder;
+import com.example.javaqa.items.ProfileCategoryItem;
 
 import java.util.ArrayList;
 
-public class FriendMainListAdapter extends RecyclerView.Adapter {
+public class ProfileCategoryAdapter extends RecyclerView.Adapter {
 
-  private ArrayList<FriendItem> friends;
+  private ArrayList<ProfileCategoryItem> categoryItems;
   private OnItemClickListener onItemClickListener;
   private View view;
 
-  public FriendMainListAdapter(ArrayList<FriendItem> friendItemList) {
-    this.friends = friendItemList;
+  public ProfileCategoryAdapter(ArrayList<ProfileCategoryItem> categoryItems) {
+    this.categoryItems = categoryItems;
   }
 
   public interface OnItemClickListener{
     void onItemClick(int position);
   }
 
-  public void setOnItemClickListener(OnItemClickListener listener){
+  public void setOnItemClickListener(ProfileCategoryAdapter.OnItemClickListener listener){
     onItemClickListener = listener;
   }
 
   @NonNull
   @Override
   public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_friend,parent,false);
-    return new FriendItemHolder(view, onItemClickListener);
+    view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_profile_category,parent,false);
+    return new ProfileCategoryItemHolder(view, onItemClickListener);
   }
 
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-    FriendItem friendItem = friends.get(position);
-    if(friendItem != null) {
-      ((FriendItemHolder) holder).getUserName().setText(friendItem.getUserName());
-    }
+
   }
 
   @Override
   public int getItemCount() {
-    return friends.size();
+    return categoryItems.size();
   }
 }

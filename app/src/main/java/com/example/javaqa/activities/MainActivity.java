@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.javaqa.ActivityUtils.LaunchActivityHelper;
 import com.example.javaqa.DataBase.Authentication.SignIn;
@@ -56,13 +57,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.invite_friends:
-                return true;
-            case R.id.notifications:
-                return true;
-            case R.id.list_of_leaders:
 
                 return true;
-            case R.id.review:
+            case R.id.notifications:
 
                 return true;
             case R.id.profile:
@@ -115,10 +112,14 @@ public class MainActivity extends AppCompatActivity {
                     fab.hide();
                 } else if(position == 1) {
                     fab.hide();
+                    fab.setImageResource(R.drawable.plus_math_16px);
+                    fab.show();
+                    fab.setOnClickListener(view -> launchActivity(NewGameActivity.class));
                 } else if(position == 2) {
                     fab.hide();
                     fab.setImageResource(R.drawable.pencil_16px);
                     fab.show();
+                    //Action
                 }
             }
 
@@ -127,6 +128,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void launchActivity(Class activity){
+        Intent intent = new Intent(this,activity);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
     }
 
     private void setUpAppBar() {

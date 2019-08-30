@@ -15,23 +15,8 @@
         android:id="@+id/notifications"/>
 
     <item
-        app:showAsAction="never"
-        android:id="@+id/list_of_leaders"
-        android:title="Список лидеров"/>
-
-    <item
-        android:id="@+id/review"
-        android:title="Отзыв"
-        app:showAsAction="never"/>
-
-    <item
         android:id="@+id/estimate"
         android:title="Оценить"
-        app:showAsAction="never"/>
-
-    <item
-        android:id="@+id/invite_friends"
-        android:title="Пригласить друзей"
         app:showAsAction="never"/>
 
     <item

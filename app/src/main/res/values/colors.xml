@@ -12,4 +12,6 @@
     <color name="orange">#E05202</color>
     <color name="light_grey">#F1E7DE</color>
     <color name="light_orange">#FC8E43</color>
+
+    <color name="item_pressed">#CAC7C7</color>
 </resources>

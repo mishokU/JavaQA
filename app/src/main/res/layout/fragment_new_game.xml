@@ -37,123 +37,53 @@
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/random_player_button"
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/start_button_style"
-            android:layout_height="50dp">
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:text="@string/random_player"
+            app:icon="@drawable/dice_26px"
+            android:textAlignment="center"
+            app:cornerRadius="10dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/button_color" />
 
-            <ImageView
-                android:id="@+id/image_dice"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:background="@drawable/start_facebook_button_style"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/dice_26px"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Случайный игрок"
-                android:textSize="28sp"
-                android:textColor="@color/white"
-                android:layout_toEndOf="@+id/image_dice"
-                android:layout_marginStart="10dp"
-                android:layout_centerVertical="true"/>
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@drawable/start_facebook_button_style"
-                android:src="@drawable/forward_24px"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:layout_marginEnd="10dp"
-                android:layout_alignParentEnd="true"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/facebook_player_button"
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/blue_button_game_style"
-            android:layout_height="50dp">
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:text="@string/friends_from_facebook"
+            app:icon="@drawable/facebook_icon"
+            app:iconSize="32dp"
+            android:textAlignment="center"
+            app:cornerRadius="10dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/center_bg_grad" />
 
-            <ImageView
-                android:id="@+id/image_facebook"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:background="@drawable/start_facebook_button_style"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/facebook_icon"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Друзья из Facebook"
-                android:textSize="26sp"
-                android:textColor="@color/white"
-                android:layout_toEndOf="@+id/image_facebook"
-                android:layout_marginStart="10dp"
-                android:layout_centerVertical="true"/>
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@drawable/start_facebook_button_style"
-                android:src="@drawable/forward_24px"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:layout_marginEnd="10dp"
-                android:layout_alignParentEnd="true"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/invite_new_player_button"
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/blue_button_game_style"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:id="@+id/image_invite"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:background="@drawable/start_facebook_button_style"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/add_user_24px"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Пригласить"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                android:layout_centerHorizontal="true"
-                android:layout_toEndOf="@+id/image_invite"
-                android:layout_marginStart="10dp"
-                android:layout_centerVertical="true"/>
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@drawable/start_facebook_button_style"
-                android:src="@drawable/forward_24px"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:layout_marginEnd="10dp"
-                android:layout_alignParentEnd="true"/>
-
-        </RelativeLayout>
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:text="@string/invite"
+            app:icon="@drawable/add_user_24px"
+            app:iconSize="30dp"
+            android:textAlignment="center"
+            app:cornerRadius="10dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/center_bg_grad" />
 
     </LinearLayout>
 

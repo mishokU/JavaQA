@@ -10,10 +10,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.javaqa.ActivityUtils.LaunchActivityHelper;
-import com.example.javaqa.DataBase.Authentication.SignIn;
+import com.example.javaqa.DataBase.Authentication.Authentication.SignIn;
 import com.example.javaqa.R;
 import com.example.javaqa.adapters.MainActivityViewPagerAdapter;
 import com.example.javaqa.fragments.ConversationFragment;
@@ -22,6 +21,8 @@ import com.example.javaqa.fragments.LearnFragment;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,12 +37,17 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.fab) FloatingActionButton fab;
 
     private MainActivityViewPagerAdapter mViewPagerAdapter;
+    private LaunchActivityHelper launchActivityHelper;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        launchActivityHelper = new LaunchActivityHelper();
+
         setUpAppBar();
         setUpViewPagerAdapter();
     }
@@ -63,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             case R.id.profile:
-                    new LaunchActivityHelper(this,ProfileActivity.class,Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    launchActivityHelper.launchActivity(this,ProfileActivity.class,Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -119,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     fab.hide();
                     fab.setImageResource(R.drawable.pencil_16px);
                     fab.show();
+                    fab.setOnClickListener(view -> launchActivity(CreateConversationPostActivity.class));
                     //Action
                 }
             }
@@ -143,16 +150,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        SignIn signIn = new SignIn(this);
-        signIn.authentication();
-        if(signIn.checkOnSignIn()) {
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if(currentUser == null) {
             sendToStart();
         }
     }
 
     private void sendToStart() {
-        new LaunchActivityHelper(this, StartActivity.class,
-            Intent.FLAG_ACTIVITY_NO_ANIMATION| Intent.FLAG_ACTIVITY_NO_HISTORY);
+        launchActivityHelper.launchActivity(this, StartActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION);
         finish();
     }
 }

@@ -5,29 +5,31 @@
     <item
         android:id="@+id/invite_friends"
         android:title="Пригласить"
-        app:showAsAction="never">
-
-    </item>
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/edit_profile"
         android:title="Редактировать профиль"
-        app:showAsAction="never">
+        app:showAsAction="never"/>
 
-    </item>
+    <item
+        android:id="@+id/show_experience"
+        app:showAsAction="never"
+        android:title="Показать прогресс"/>
 
     <item
         android:id="@+id/share"
         android:title="Поделиться"
-        app:showAsAction="never">
-
-    </item>
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/settings"
         android:title="Настройки"
-        app:showAsAction="never">
+        app:showAsAction="never"/>
 
-    </item>
+    <item
+        android:id="@+id/exit_from_account"
+        android:title="Выйти"
+        app:showAsAction="never"/>
 
 </menu>

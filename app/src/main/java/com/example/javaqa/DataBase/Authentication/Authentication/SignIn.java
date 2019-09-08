@@ -1,4 +1,4 @@
-package com.example.javaqa.DataBase.Authentication;
+package com.example.javaqa.DataBase.Authentication.Authentication;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -20,6 +20,7 @@ public class SignIn implements UserAuthentication {
     private Activity activity;
     private String mUserName;
     private String mPassword;
+    private LaunchActivityHelper launchActivityHelper;
 
     public SignIn(Activity activity){
         this.activity = activity;
@@ -61,11 +62,12 @@ public class SignIn implements UserAuthentication {
 
     @Override
     public void toAccount() {
+        launchActivityHelper = new LaunchActivityHelper();
         mFirebaseAuth.signInWithEmailAndPassword(mUserName, mPassword)
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         progress.hide();
-                        new LaunchActivityHelper(activity, MainActivity.class, Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        launchActivityHelper.launchActivity(activity, MainActivity.class, Intent.FLAG_ACTIVITY_NO_HISTORY);
                         activity.finish();
                     } else {
                         progress.hide();

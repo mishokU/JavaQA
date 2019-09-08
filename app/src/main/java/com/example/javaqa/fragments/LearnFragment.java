@@ -1,5 +1,6 @@
 package com.example.javaqa.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ public class LearnFragment extends Fragment {
   private LinearLayout mBuildToolsItemList;
   private LinearLayout mDatabasesItemList;
 
+
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,14 +43,23 @@ public class LearnFragment extends Fragment {
     return mView;
   }
 
-  private void setOnClicks() {
+  private void findViews() {
+    mJavaCoreItemList = mView.findViewById(R.id.java_core_linear_layout);
+    mVCSItemList = mView.findViewById(R.id.version_control_systems_linear_layout);
+    mBuildToolsItemList = mView.findViewById(R.id.build_tools_linear_layout);
+    mDatabasesItemList = mView.findViewById(R.id.data_base_linear_layout);
+  }
 
-    for(int i = 0; i < mJavaCoreItemList.getChildCount(); i++){
+  private void setOnClicks() {
+    LaunchActivityHelper javaCore = new LaunchActivityHelper();
+    RelativeLayout relativeLayout = (RelativeLayout)mJavaCoreItemList.getChildAt(0);
+    relativeLayout.setOnClickListener(view -> launchActivity(IntroductionActivity.class));
+
+    /*for(int i = 0; i < mJavaCoreItemList.getChildCount(); i++){
       final int index = i;
       RelativeLayout relativeLayout = (RelativeLayout)mJavaCoreItemList.getChildAt(i);
-      relativeLayout.setOnClickListener(view -> new LaunchActivityHelper().JavaCoreIndexingActivityHelper(getActivity(),index));
+      relativeLayout.setOnClickListener(view -> javaCore.JavaCoreIndexingActivityHelper(getActivity(),index));
     }
-
     for(int i = 0; i < mVCSItemList.getChildCount(); i++){
       final int index = i;
       RelativeLayout relativeLayout = (RelativeLayout)mVCSItemList.getChildAt(i);
@@ -65,15 +76,11 @@ public class LearnFragment extends Fragment {
       final int index = i;
       RelativeLayout relativeLayout = (RelativeLayout)mDatabasesItemList.getChildAt(i);
       relativeLayout.setOnClickListener(view -> new LaunchActivityHelper().DataBasesActivityHelper(getActivity(),index));
-    }
-
+    }*/
   }
 
-  private void findViews() {
-    mJavaCoreItemList = mView.findViewById(R.id.java_core_linear_layout);
-    mVCSItemList = mView.findViewById(R.id.version_control_systems_linear_layout);
-    mBuildToolsItemList = mView.findViewById(R.id.build_tools_linear_layout);
-    mDatabasesItemList = mView.findViewById(R.id.data_base_linear_layout);
+  public void launchActivity(Class activity){
+    Intent intent = new Intent(getContext(), activity);
+    startActivity(intent);
   }
-
 }

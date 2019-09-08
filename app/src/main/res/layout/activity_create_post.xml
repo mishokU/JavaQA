@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/light_grey"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/custom_toolbar"/>
+
+    <ImageView
+        android:id="@+id/image_inserted"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/post_view"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:id="@+id/post_view"
+        app:counterEnabled="true"
+        android:hint="Программироване, работа, статьи"
+        app:hintEnabled="true"
+        app:counterMaxLength="1024"
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:id="@+id/post_text"
+            android:background="@null"
+            android:paddingEnd="10dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:layout_above="@id/actions"
+        android:layout_width="match_parent"
+        android:background="@color/light_orange"
+        android:layout_height="2dp"/>
+
+    <RelativeLayout
+        android:id="@+id/actions"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="50dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/publish_post"
+            android:layout_width="wrap_content"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:textSize="14sp"
+            app:backgroundTint="@color/light_grey"
+            android:textColor="@color/text_button_color"
+            app:cornerRadius="0dp"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/open_camera"
+            android:background="@color/light_grey"
+            android:text="Написать"/>
+
+        <ImageButton
+            android:layout_width="36dp"
+            android:id="@+id/open_gallery"
+            android:layout_toEndOf="@id/insert_button"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:layout_height="36dp" />
+
+        <ImageButton
+            android:layout_width="36dp"
+            android:id="@+id/open_camera"
+            android:layout_toEndOf="@id/open_gallery"
+            android:layout_centerVertical="true"
+            android:src="@android:drawable/ic_menu_camera"
+            android:layout_marginStart="10dp"
+            android:layout_height="36dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/insert_button"
+            android:textSize="14sp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:layout_width="140dp"
+            android:textColor="@color/text_button_color"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_height="wrap_content"
+            app:cornerRadius="0dp"
+            app:backgroundTint="@color/light_grey"
+            android:text="Вставить"
+            android:background="@color/light_grey"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

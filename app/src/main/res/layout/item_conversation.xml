@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="10dp"
     android:layout_height="wrap_content">
 
     <RelativeLayout
@@ -13,43 +19,18 @@
             android:id="@+id/count_place"
             android:layout_width="wrap_content"
             android:orientation="vertical"
+            android:layout_centerVertical="false"
             android:layout_alignParentEnd="true"
-            android:layout_height="wrap_content">
+            android:layout_height="60dp">
 
-            <TextView
-                android:id="@+id/rating_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:layout_marginStart="6dp"
-                android:text="22"/>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:src="@drawable/topic_26px"
-                    android:scaleType="centerInside"/>
-
-                <TextView
-                    android:id="@+id/comments_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="1"/>
-
-            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginBottom="2dp"
             android:orientation="vertical"
             android:layout_toStartOf="@+id/count_place">
@@ -61,71 +42,178 @@
                 android:layout_marginBottom="5dp"
                 android:text="Titlwfewfewfewfewfwefjweoifjweofjweofjweaofjweofjewofjewojfoewjofwjeoe"/>
 
-            <TextView
-                android:id="@+id/hashtags_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="hashtegs"/>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:scrollbars="none"
+                android:layout_height="wrap_content">
 
-            <LinearLayout
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hash_tags_chip_group"
+                    app:singleLine="true">
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        app:chipBackgroundColor="@color/light_orange"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:chipCornerRadius="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:text="Programming"/>
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        app:chipBackgroundColor="@color/light_orange"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:chipCornerRadius="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:text="Programming"/>
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        app:chipBackgroundColor="@color/light_orange"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:chipCornerRadius="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:text="Programming"/>
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        app:chipBackgroundColor="@color/light_orange"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                        app:chipCornerRadius="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:text="Programming"/>
+
+                    <!-- Chips can be declared here, or added dynamically. -->
+
+                </com.google.android.material.chip.ChipGroup>
+            </HorizontalScrollView>
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/card_user_image"
+                    android:layout_centerVertical="true"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/mytest"/>
 
                 <TextView
                     android:id="@+id/user_name"
+                    android:layout_toEndOf="@id/card_user_image"
                     android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     android:layout_marginStart="5dp"
-                    android:text="Misha"/>
+                    android:layout_toStartOf="@id/statistic_block"
+                    android:text="Misha Usov"/>
 
-                <ImageView
-                    android:id="@+id/topic_time_image"
-                    android:layout_width="20dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/calendar_24px"
-                    android:layout_marginStart="5dp"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/publication_time"
+                <RelativeLayout
+                    android:id="@+id/statistic_block"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:textSize="16sp"
-                    android:text="9 hours"/>
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="5dp"
+                    android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/views_image"
-                    android:src="@drawable/invisible_24px"
-                    android:layout_width="20dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_height="20dp" />
+                    <ImageView
+                        android:id="@+id/topic_time_image"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_centerVertical="true"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/calendar_24px"
+                        android:layout_marginStart="5dp"
+                        />
 
-                <TextView
-                    android:id="@+id/count_of_views"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="20"/>
+                    <TextView
+                        android:id="@+id/publication_time"
+                        android:layout_toEndOf="@id/topic_time_image"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:textSize="16sp"
+                        android:text="0"/>
 
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/views_image"
+                        android:layout_toEndOf="@id/publication_time"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/invisible_24px"
+                        android:layout_width="16dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_height="16dp" />
+
+                    <TextView
+                        android:id="@+id/count_of_views"
+                        android:layout_toEndOf="@id/views_image"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:id="@+id/thumbs_up"
+                        android:layout_toEndOf="@id/count_of_views"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/like_it_filled_100px"
+                        android:layout_width="16dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_height="16dp" />
+
+                    <TextView
+                        android:id="@+id/rating_view"
+                        android:layout_toEndOf="@id/thumbs_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_centerVertical="true"
+                        android:text="0"/>
+
+                    <ImageView
+                        android:id="@+id/comments_image"
+                        android:layout_toEndOf="@id/rating_view"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/comments_48px"
+                        android:layout_width="16dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_height="16dp" />
+
+                    <TextView
+                        android:id="@+id/comments_count"
+                        android:layout_toEndOf="@id/comments_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_centerVertical="true"
+                        android:text="0"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
 
         </LinearLayout>
 
-
     </RelativeLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/end_bg_grad"
-        android:layout_gravity="bottom"/>
-
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

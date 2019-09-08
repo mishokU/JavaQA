@@ -83,14 +83,12 @@ public class IntroductionActivity extends AppCompatActivity {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()){
-      case R.id.how_to_pass:
-        alertDialogHelper = new AlertDialogHelper("Задержите элемент и передвинте его вниз или вверх, чтобы пройти задачку",this);
-        alertDialogHelper.show(getSupportFragmentManager(),"");
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
+    if (item.getItemId() == R.id.how_to_pass) {
+      alertDialogHelper = new AlertDialogHelper("Задержите элемент и передвинте его вниз или вверх, чтобы пройти задачку", this);
+      alertDialogHelper.show(getSupportFragmentManager(), "");
+      return true;
     }
+    return super.onOptionsItemSelected(item);
   }
 
   public ViewPager getViewPager(){

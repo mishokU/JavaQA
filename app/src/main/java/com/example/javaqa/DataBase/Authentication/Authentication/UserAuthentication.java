@@ -1,4 +1,4 @@
-package com.example.javaqa.DataBase.Authentication;
+package com.example.javaqa.DataBase.Authentication.Authentication;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

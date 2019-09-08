@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.javaqa.R;
 import com.example.javaqa.adapters.FriendMainListAdapter;
 import com.example.javaqa.items.FriendItem;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
@@ -22,9 +23,9 @@ import butterknife.ButterKnife;
 public class NewGameActivity extends AppCompatActivity implements View.OnClickListener {
 
   private RecyclerView recyclerView;
-  private RelativeLayout mRandomPlayer;
-  private RelativeLayout mFacebookFriends;
-  private RelativeLayout mInviteFriend;
+  private MaterialButton mRandomPlayer;
+  private MaterialButton mFacebookFriends;
+  private MaterialButton mInviteFriend;
   private ImageView mDeleteFriends;
   private Toolbar toolbar;
 

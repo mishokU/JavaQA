@@ -12,11 +12,7 @@ import com.example.javaqa.activities.java_core.IntroductionActivity;
 
 public class LaunchActivityHelper {
 
-    public  LaunchActivityHelper(){
-
-    }
-
-    public LaunchActivityHelper(Activity fromActivity, Class toActivity, int flags) {
+    public void launchActivity(Activity fromActivity, Class toActivity, int flags) {
         Intent intent = new Intent(fromActivity,toActivity);
         intent.addFlags(flags);
         fromActivity.startActivity(intent);
@@ -24,8 +20,20 @@ public class LaunchActivityHelper {
 
     public void JavaCoreIndexingActivityHelper(Activity activity, int index){
         if(index == 0) {
-            new LaunchActivityHelper(activity, IntroductionActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            launchActivity(activity, IntroductionActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION);
         } else if(index == 1) {
+
+        } else if(index == 2) {
+
+        } else if(index == 3) {
+
+        } else if(index == 4) {
+
+        } else if(index == 5) {
+
+        } else if(index == 6) {
+
+        } else if(index == 7) {
 
         }
     }

@@ -19,12 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:titleTextColor="@color/black"/>
+            app:titleTextColor="@color/white"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/main_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabBackground="@color/end_bg_grad"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/light_orange"
             app:tabMode="fixed" />

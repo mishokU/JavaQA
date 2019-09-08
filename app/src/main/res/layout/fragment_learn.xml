@@ -34,7 +34,6 @@
         android:layout_width="match_parent"
         android:layout_margin="5dp"
         android:orientation="vertical"
-        android:contextClickable="true"
         android:layout_height="match_parent">
 
         <RelativeLayout
@@ -560,6 +559,7 @@
             android:background="@color/light_grey"
             android:layout_marginTop="10dp"
             android:elevation="3dp"
+            android:clickable="false"
             android:layout_height="148dp">
 
             <TextView

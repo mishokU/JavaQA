@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#68686B</color>
     <color name="center_bg_grad">#3B7BEB</color>
     <color name="start_bg_grad">#6391E0</color>
     <color name="end_bg_grad">#6471F0</color>
@@ -12,6 +12,6 @@
     <color name="orange">#E05202</color>
     <color name="light_grey">#F1E7DE</color>
     <color name="light_orange">#FC8E43</color>
-
+    <color name="text_button_color">#6F0AAA</color>
     <color name="item_pressed">#CAC7C7</color>
 </resources>

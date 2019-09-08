@@ -27,6 +27,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         ButterKnife.bind(this);
+
         setOnClicks();
     }
 
@@ -40,14 +41,26 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if(v == mLoginButton) {
-            new LaunchActivityHelper(this, SingInActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            launchActivity(SingInActivity.class);
         } else if(v == mLoginWithFacebookButton) {
             //Facebook API
         } else if(v == mCreateAccount) {
-            new LaunchActivityHelper(this,RegistrationActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            launchActivity(RegistrationActivity.class);
         } else if(v == mLanguageSwapper) {
             //Create language dialog swapper
         }
     }
 
+    private void launchActivity(Class activity){
+        Intent intent = new Intent(this, activity);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(0,0);
+    }
 }

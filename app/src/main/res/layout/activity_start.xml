@@ -24,25 +24,32 @@
         android:background="@drawable/logotr"
         android:layout_height="wrap_content" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:background="@drawable/start_button_style"
         android:layout_below="@id/logo"
         android:id="@+id/login"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:padding="10dp"
+        app:backgroundTint="@color/button_color"
         android:textSize="18sp"
         android:hint="Login"
         android:textColorHint="@color/white"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/login_with_facebook"
         android:layout_below="@id/login"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/start_facebook_button_style"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/white"
         android:textSize="18sp"
+        android:padding="10dp"
         android:scaleType="fitStart"
         android:textColorHint="@color/center_bg_grad"
         android:hint="Login with Facebook"/>
@@ -92,14 +99,18 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:background="@drawable/start_createac_button_style"
         android:layout_below="@id/divider"
         android:id="@+id/create_account"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:textSize="18sp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+        app:strokeColor="@color/white"
+        android:padding="10dp"
         android:textColorHint="@color/white"
         android:hint="Create account" />
 

@@ -22,7 +22,7 @@ public class QuestionToIntroductionFragment extends Fragment {
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    view = inflater.inflate(R.layout.javacore_second_introduction_fragment,container,true);
+    view = inflater.inflate(R.layout.javacore_second_introduction_fragment,container,false);
 
     findViews();
     checkButtonSetUp();
@@ -36,7 +36,6 @@ public class QuestionToIntroductionFragment extends Fragment {
       if(checkCorrectAnswer()){
         checkButton.setBackground(getResources().getDrawable(R.drawable.blue_button_correct_game_style));
         checkButton.setText("Продолжить");
-
       } else {
         checkButton.setBackground(getResources().getDrawable(R.drawable.blue_button_wrong_game_style));
       }

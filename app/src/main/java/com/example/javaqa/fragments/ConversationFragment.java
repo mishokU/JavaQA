@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +25,7 @@ public class ConversationFragment extends Fragment {
   private View view;
   private RecyclerView recyclerView;
   private SearchView searchView;
+  private AppCompatSpinner spinner;
 
   private RecyclerView.Adapter adapter;
   private RecyclerView.LayoutManager layoutManager;
@@ -43,6 +45,7 @@ public class ConversationFragment extends Fragment {
   private void findAllViews() {
     recyclerView = view.findViewById(R.id.public_conversation_place);
     searchView = view.findViewById(R.id.search_conversation);
+    spinner = view.findViewById(R.id.drop_down_menu);
   }
 
   private void setUpAdapter() {

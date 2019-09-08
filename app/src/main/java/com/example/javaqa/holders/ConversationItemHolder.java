@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.javaqa.R;
 import com.example.javaqa.adapters.ConversationAdapter;
 import com.example.javaqa.adapters.FriendMainListAdapter;
+import com.google.android.material.chip.ChipGroup;
 
 import org.w3c.dom.Text;
 
@@ -19,7 +20,7 @@ public class ConversationItemHolder extends RecyclerView.ViewHolder {
   private TextView views;
   private TextView comments;
   private TextView rating;
-  private TextView hashtags;
+  private ChipGroup hashtags;
   private TextView user_name;
 
   public ConversationItemHolder(@NonNull View itemView, final ConversationAdapter.OnItemClickListener listener) {
@@ -30,7 +31,7 @@ public class ConversationItemHolder extends RecyclerView.ViewHolder {
     this.views = itemView.findViewById(R.id.count_of_views);
     this.comments = itemView.findViewById(R.id.comments_count);
     this.rating = itemView.findViewById(R.id.rating_view);
-    this.hashtags = itemView.findViewById(R.id.hashtags_view);
+    this.hashtags = itemView.findViewById(R.id.hash_tags_chip_group);
     this.user_name = itemView.findViewById(R.id.user_name);
 
     itemView.setOnClickListener(view -> {
@@ -63,7 +64,7 @@ public class ConversationItemHolder extends RecyclerView.ViewHolder {
     return rating;
   }
 
-  public TextView getHashtags() {
+  public ChipGroup getHashtags() {
     return hashtags;
   }
 

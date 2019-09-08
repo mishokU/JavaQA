@@ -10,4 +10,12 @@
     <string name="write_once_run_anywhere">Write Once, Run Everywhere</string>
     <string name="write_once_run_nowhere">Write Once, Run Nowhere</string>
     <string name="take_hard_make_work">Take hard, Make work</string>
+    <string name="save">Save</string>
+    <string name="email_adress">Эл. адресс</string>
+    <string name="change_avatar">Изменить аватар</string>
+    <string name="post_advice">Делитесь подсказками, статьями и любыми материалам по теме программирования</string>
+    <string name="random_player">Случайный игрок</string>
+    <string name="friends_from_facebook">Друзья из Facebook</string>
+    <string name="invite">Пригласить</string>
+    <string name="new_game_button">Новая игра</string>
 </resources>

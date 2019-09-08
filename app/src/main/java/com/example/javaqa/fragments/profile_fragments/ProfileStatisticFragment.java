@@ -1,4 +1,4 @@
-package com.example.javaqa.fragments;
+package com.example.javaqa.fragments.profile_fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

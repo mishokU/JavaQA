@@ -1,9 +1,10 @@
-package com.example.javaqa.fragments;
+package com.example.javaqa.fragments.profile_fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,16 +20,16 @@ import com.example.javaqa.items.ConversationItem;
 
 import java.util.ArrayList;
 
-public class ProfilePostFragment extends Fragment {
+public class ProfileConversationFragment extends Fragment {
 
   private View view;
   private RecyclerView recyclerView;
+  private TextView emptyList;
 
   private RecyclerView.Adapter adapter;
   private RecyclerView.LayoutManager layoutManager;
   private ArrayList<ConversationItem> conversationItems;
   private SwipeRefreshLayout swipeRefreshLayout;
-
 
   @Nullable
   @Override
@@ -36,6 +37,7 @@ public class ProfilePostFragment extends Fragment {
     view = inflater.inflate(R.layout.fragment_profile_posts,container,false);
 
     findViews();
+    initFirebase();
     setUpAdapter();
 
     return view;
@@ -52,14 +54,10 @@ public class ProfilePostFragment extends Fragment {
     conversationItems = new ArrayList<>();
     adapter = new ConversationAdapter(conversationItems);
 
-    conversationItems.add(new ConversationItem());
-    conversationItems.add(new ConversationItem());
-    conversationItems.add(new ConversationItem());
-    conversationItems.add(new ConversationItem());
-    conversationItems.add(new ConversationItem());
-    conversationItems.add(new ConversationItem());
-    conversationItems.add(new ConversationItem());
-    conversationItems.add(new ConversationItem());
+    if(conversationItems.isEmpty()) {
+      conversationItems.add(new ConversationItem());
+    }
+    //loadUserData();
 
     recyclerView.setHasFixedSize(true);
     recyclerView.setLayoutManager(layoutManager);
@@ -67,6 +65,10 @@ public class ProfilePostFragment extends Fragment {
 
     ((ConversationAdapter) adapter).setOnItemClickListener(position ->
         Toast.makeText(getContext(),"Clicked" + position,Toast.LENGTH_SHORT).show());
+  }
+
+  private void initFirebase() {
+
   }
 
 }

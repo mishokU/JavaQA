@@ -1,4 +1,4 @@
-package com.example.javaqa.DataBase.Authentication;
+package com.example.javaqa.DataBase.Authentication.Authentication;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -28,6 +28,7 @@ public class Registration implements UserAuthentication {
     private String mPassword;
     private String mRepeatPassword;
     private String mEmail;
+    private LaunchActivityHelper launchActivityHelper;
 
     public Registration(Activity activity) {
         this.activity = activity;
@@ -42,15 +43,12 @@ public class Registration implements UserAuthentication {
     public void toAccount() {
         mAuth.createUserWithEmailAndPassword(mEmail,mPassword).addOnCompleteListener(task -> {
             if(task.isSuccessful()) {
-                System.out.println("Hi1");
                 FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                assert firebaseUser != null;
                 String user_id = firebaseUser.getUid();
-
-                mReference = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
-
+                mReference = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id).child("userData");
                 createAccount();
             } else {
-                System.out.println("Hi1 ");
                 progress.hide();
                 Toast.makeText(activity,"Can not register with email and password!", Toast.LENGTH_SHORT).show();
             }
@@ -58,15 +56,16 @@ public class Registration implements UserAuthentication {
     }
 
     private void createAccount() {
+        launchActivityHelper = new LaunchActivityHelper();
         HashMap<String, String> newUserMap = new HashMap<>();
         newUserMap.put("username",mUserName);
         newUserMap.put("email",mEmail);
-        newUserMap.put("imageUrl", "default");
+        newUserMap.put("imageURL", "default");
 
         mReference.setValue(newUserMap).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
                 progress.dismiss();
-                new LaunchActivityHelper(activity, MainActivity.class, Intent.FLAG_ACTIVITY_NO_HISTORY);
+                launchActivityHelper.launchActivity(activity, MainActivity.class, Intent.FLAG_ACTIVITY_NO_HISTORY);
                 activity.finish();
             }
         });

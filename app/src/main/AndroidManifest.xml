@@ -19,17 +19,31 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.SingInActivity"/>
+        <activity android:name=".activities.SingInActivity"
+            android:parentActivityName=".activities.StartActivity"/>
 
-        <activity android:name=".activities.RegistrationActivity"/>
+        <activity android:name=".activities.RegistrationActivity"
+            android:parentActivityName=".activities.StartActivity"/>
 
-        <activity android:name=".activities.StartActivity">
+        <activity android:name=".activities.StartActivity"/>
 
+        <activity android:name=".activities.NewGameActivity"
+            android:parentActivityName=".activities.MainActivity"/>
+
+        <activity android:name=".activities.ProfileActivity"
+            android:parentActivityName=".activities.MainActivity"/>
+
+        <activity android:name=".activities.java_core.IntroductionActivity"
+            android:parentActivityName=".activities.MainActivity"/>
+
+        <activity android:name=".activities.profile_activities.ProfileEditActivity"
+            android:parentActivityName=".activities.ProfileActivity">
         </activity>
 
-        <activity android:name=".activities.NewGameActivity"/>
-        <activity android:name=".activities.ProfileActivity"/>
-        <activity android:name=".activities.java_core.IntroductionActivity"/>
+        <activity android:name=".activities.profile_activities.CreatePostActivity"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:name=".activities.CreateConversationPostActivity"/>
 
     </application>
 

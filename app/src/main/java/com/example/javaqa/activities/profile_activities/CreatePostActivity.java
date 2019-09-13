@@ -82,8 +82,8 @@ public class CreatePostActivity extends AppCompatActivity implements View.OnClic
     userId = firebaseUser.getUid();
     //Get to current user information in database;
 
-    databasePostReference = firebaseDatabase.child("Posts");
-    databaseUserPostReference = firebaseDatabase.child("Users").child(userId).child("Posts");
+    databasePostReference = firebaseDatabase.child("PostData");
+    databaseUserPostReference = firebaseDatabase.child("Users").child(userId).child("PostData");
 
     firebaseStorage = FirebaseStorage.getInstance();
   }

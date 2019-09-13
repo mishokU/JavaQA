@@ -1,5 +1,6 @@
 package com.example.javaqa.adapters;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,17 +10,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.javaqa.R;
 import com.example.javaqa.holders.ConversationItemHolder;
-import com.example.javaqa.items.ConversationItem;
+import com.example.javaqa.items.PostData;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+import java.util.Objects;
+
+import kotlin.io.FileTreeWalk;
 
 
 public class ConversationAdapter extends RecyclerView.Adapter {
 
-  private ArrayList<ConversationItem> conversationItems;
+  private ArrayList<PostData> conversationItems;
   private OnItemClickListener onItemClickListener;
+  private DatabaseReference databaseReference;
   private View view;
 
-  public ConversationAdapter(ArrayList<ConversationItem> conversationItems) {
+  public ConversationAdapter(ArrayList<PostData> conversationItems) {
     this.conversationItems = conversationItems;
   }
 
@@ -40,14 +52,35 @@ public class ConversationAdapter extends RecyclerView.Adapter {
 
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-    ConversationItem conversationItem = conversationItems.get(position);
+    PostData conversationItem = conversationItems.get(position);
     if(conversationItem != null) {
-      /*((ConversationItemHolder) holder).getTitle().setText(conversationItem.getTitle());
+
+      ((ConversationItemHolder) holder).getTitle().setText(conversationItem.getTitle());
       ((ConversationItemHolder) holder).getComments().setText(conversationItem.getComments());
-      ((ConversationItemHolder) holder).getHashtags().setText(conversationItem.getHashtags());
-      ((ConversationItemHolder) holder).getTime().setText(conversationItem.getPublication_time());
-      ((ConversationItemHolder) holder).getViews().setText(conversationItem.getCount_of_views());
-      ((ConversationItemHolder) holder).getRating().setText(conversationItem.getRating());*/
+      ((ConversationItemHolder) holder).getTime().setText(conversationItem.getPublicationTime());
+      ((ConversationItemHolder) holder).getViews().setText(conversationItem.getCountOfViews());
+      ((ConversationItemHolder) holder).getRating().setText(conversationItem.getRating());
+      ((ConversationItemHolder) holder).createChipGroup(conversationItem.getHashtags());
+
+      databaseReference = FirebaseDatabase.getInstance().getReference();
+      databaseReference.child("Users").child(conversationItem.getUserUrl()).child("userData").addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+          String userName = Objects.requireNonNull(dataSnapshot.child("username").getValue()).toString();
+          String userImageUrl = Objects.requireNonNull(dataSnapshot.child("imageURL").getValue()).toString();
+
+          ((ConversationItemHolder) holder).getUserName().setText(userName);
+
+          conversationItem.setUserName(userName);
+          conversationItem.setUserImageUrl(userImageUrl);
+          //Profile Image;
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+      });
     }
   }
 

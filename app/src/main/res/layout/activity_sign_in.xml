@@ -62,6 +62,8 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:layout_height="wrap_content"
             app:backgroundTint="@color/button_color"
+            android:padding="10dp"
+            app:cornerRadius="15dp"
             android:hint="@string/sing_in"
             android:textColorHint="@color/white"
             android:textSize="18sp" />

@@ -54,6 +54,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
@@ -61,7 +62,7 @@
         android:layout_margin="16dp"
         android:backgroundTint="@color/end_bg_grad"
         app:borderWidth="0dp"
-        app:fabSize="normal"
+        app:fabSize="auto"
         app:layout_anchor="@null"
         android:scaleType="fitCenter"
         android:src="@android:drawable/ic_input_add"/>

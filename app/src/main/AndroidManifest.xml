@@ -43,7 +43,9 @@
         <activity android:name=".activities.profile_activities.CreatePostActivity"
             android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name=".activities.CreateConversationPostActivity"/>
+        <activity android:name=".activities.CreateConversationPostActivity" />
+
+        <activity android:name=".activities.OpenConversationItem"/>
 
     </application>
 

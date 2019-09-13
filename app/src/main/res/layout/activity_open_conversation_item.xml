@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/custom_toolbar"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_height="wrap_content">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    app:cardBackgroundColor="@color/light_grey"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:id="@+id/rating_block">
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:id="@+id/increment_arrow"
+                                android:layout_centerHorizontal="true"
+                                android:src="@drawable/chevron_up_24px"
+                                android:background="@null" />
+
+                            <TextView
+                                android:id="@+id/rating_full_item"
+                                android:layout_width="wrap_content"
+                                android:layout_below="@id/increment_arrow"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_centerHorizontal="true"
+                                android:textSize="16sp"
+                                android:text="12"/>
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_centerHorizontal="true"
+                                android:id="@+id/decrement_arrow"
+                                android:layout_below="@id/rating_full_item"
+                                android:background="@null"
+                                android:src="@drawable/chevron_down_24px"
+                                />
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/favourite_conversation_star"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/toggle_favourite_button"
+                                android:layout_below="@id/decrement_arrow"
+                                />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_toEndOf="@id/rating_block"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="25dp"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:id="@+id/title_full_item"
+                                android:text="wefwefewjkfewpfoewjfepwjf
+                                epwwpfewpfepwfjwpfjwpfjpwofjpwfjp
+                                wfjpwjfpwfjepwofejwopfjepwfjepwjfepwjfpw"
+                                android:layout_height="wrap_content" />
+
+                            <com.google.android.material.chip.ChipGroup
+                                android:id="@+id/chip_group_for_full_item"
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="5dp"
+                                android:layout_height="wrap_content"
+                                app:singleSelection="true">
+
+                                <!-- Input chips here -->
+
+                            </com.google.android.material.chip.ChipGroup>
+
+                            <TextView
+                                android:id="@+id/description_full_item"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_marginBottom="10dp"
+                                android:layout_height="wrap_content">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:id="@+id/user_name_full_item"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Misha Usov"/>
+
+                                    <RelativeLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_below="@+id/user_name_full_item">
+
+                                        <ImageView
+                                            android:id="@+id/topic_time_image"
+                                            android:layout_width="16dp"
+                                            android:layout_height="16dp"
+                                            android:layout_centerVertical="true"
+                                            android:scaleType="centerInside"
+                                            android:src="@drawable/calendar_24px"
+                                            android:layout_marginStart="5dp" />
+
+                                        <TextView
+                                            android:id="@+id/publication_time"
+                                            android:layout_toEndOf="@id/topic_time_image"
+                                            android:layout_centerVertical="true"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="5dp"
+                                            android:textSize="12sp"
+                                            android:text="0"/>
+
+                                        <ImageView
+                                            android:id="@+id/views_image"
+                                            android:layout_toEndOf="@id/publication_time"
+                                            android:layout_centerVertical="true"
+                                            android:src="@drawable/invisible_24px"
+                                            android:layout_width="16dp"
+                                            android:layout_marginStart="5dp"
+                                            android:layout_height="16dp" />
+
+                                        <TextView
+                                            android:id="@+id/count_of_views"
+                                            android:layout_toEndOf="@id/views_image"
+                                            android:layout_centerVertical="true"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="12sp"
+                                            android:layout_marginStart="5dp"
+                                            android:text="0"/>
+
+                                    </RelativeLayout>
+
+                                </RelativeLayout>
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="30dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:id="@+id/user_image_full_item"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/mytest"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_answers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textSize="12sp"
+                        android:text="ОТВЕТОВ:"/>
+
+                    <TextView
+                        android:id="@+id/comments_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@+id/text_answers"
+                        android:textSize="12sp"
+                        android:text="0"/>
+
+                    <TextView
+                        android:layout_toStartOf="@id/spinner"
+                        android:layout_width="wrap_content"
+                        android:text="Сортировать по "
+                        android:layout_centerVertical="true"
+                        android:textSize="12sp"
+                        android:layout_height="wrap_content" />
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/comments_recycler_view"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_width="match_parent"
+                    tools:listitem="@layout/item_conversation_answer"
+                    tools:itemCount="10"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        app:layout_behavior="com.google.android.material.floatingactionbutton.FloatingActionButton$Behavior"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/end_bg_grad"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        app:layout_anchor="@null"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_input_add"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

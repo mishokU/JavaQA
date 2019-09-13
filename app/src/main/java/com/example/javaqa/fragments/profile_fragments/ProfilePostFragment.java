@@ -15,10 +15,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.javaqa.R;
 import com.example.javaqa.adapters.ConversationAdapter;
-import com.example.javaqa.items.ConversationItem;
+import com.example.javaqa.items.PostData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +34,7 @@ public class ProfilePostFragment extends Fragment {
 
   private RecyclerView.Adapter adapter;
   private RecyclerView.LayoutManager layoutManager;
-  private ArrayList<ConversationItem> conversationItems;
+  private ArrayList<PostData> conversationItems;
   private SwipeRefreshLayout swipeRefreshLayout;
 
   private FirebaseDatabase firebaseDatabase;
@@ -62,12 +61,13 @@ public class ProfilePostFragment extends Fragment {
     firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     userId = firebaseUser.getUid();
     //Get to current user information in database;
-    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("posts");
+    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("Posts");
     firebaseStorage = FirebaseStorage.getInstance();
 
+    loadUserPosts();
   }
 
-  private void loadUserData() {
+  private void loadUserPosts() {
     databaseReference.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -87,12 +87,10 @@ public class ProfilePostFragment extends Fragment {
   }
 
   private void setUpAdapter() {
-    layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+    layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,true);
     ((LinearLayoutManager) layoutManager).setStackFromEnd(true);
     conversationItems = new ArrayList<>();
     adapter = new ConversationAdapter(conversationItems);
-
-    loadUserData();
 
     recyclerView.setHasFixedSize(true);
     recyclerView.setLayoutManager(layoutManager);

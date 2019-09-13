@@ -7,6 +7,8 @@
     android:layout_marginTop="5dp"
     android:layout_marginEnd="10dp"
     android:layout_marginStart="10dp"
+    app:strokeColor="@color/start_bg_grad"
+    app:strokeWidth="1dp"
     android:layout_marginBottom="5dp"
     app:cardCornerRadius="10dp"
     android:layout_height="wrap_content">
@@ -16,96 +18,14 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/count_place"
-            android:layout_width="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerVertical="false"
-            android:layout_alignParentEnd="true"
-            android:layout_height="60dp">
-
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="2dp"
-            android:orientation="vertical"
-            android:layout_toStartOf="@+id/count_place">
-
-            <TextView
-                android:id="@+id/title_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="Titlwfewfewfewfewfwefjweoifjweofjweofjweaofjweofjewofjewojfoewjofwjeoe"/>
-
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:scrollbars="none"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.chip.ChipGroup
-                    android:layout_marginTop="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/hash_tags_chip_group"
-                    app:singleLine="true">
-
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        app:chipBackgroundColor="@color/light_orange"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                        app:chipCornerRadius="10dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/white"
-                        android:text="Programming"/>
-
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        app:chipBackgroundColor="@color/light_orange"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                        app:chipCornerRadius="10dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/white"
-                        android:text="Programming"/>
-
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        app:chipBackgroundColor="@color/light_orange"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                        app:chipCornerRadius="10dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/white"
-                        android:text="Programming"/>
-
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.MaterialComponents.Chip.Choice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        app:chipBackgroundColor="@color/light_orange"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                        app:chipCornerRadius="10dp"
-                        android:textSize="14sp"
-                        android:textColor="@color/white"
-                        android:text="Programming"/>
-
-                    <!-- Chips can be declared here, or added dynamically. -->
-
-                </com.google.android.material.chip.ChipGroup>
-            </HorizontalScrollView>
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -121,94 +41,125 @@
                     android:layout_width="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:textSize="12sp"
                     android:textAlignment="viewStart"
                     android:layout_marginStart="5dp"
-                    android:layout_toStartOf="@id/statistic_block"
                     android:text="Misha Usov"/>
 
-                <RelativeLayout
-                    android:id="@+id/statistic_block"
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/title_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:text=""/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:scrollbars="none"
+                android:layout_marginStart="5dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="5dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hash_tags_chip_group"
+                    app:singleLine="true">
 
-                    <ImageView
-                        android:id="@+id/topic_time_image"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_centerVertical="true"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/calendar_24px"
-                        android:layout_marginStart="5dp"
-                        />
+                    <!-- Chips can be declared here, or added dynamically. -->
 
-                    <TextView
-                        android:id="@+id/publication_time"
-                        android:layout_toEndOf="@id/topic_time_image"
-                        android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:textSize="16sp"
-                        android:text="0"/>
+                </com.google.android.material.chip.ChipGroup>
+            </HorizontalScrollView>
 
-                    <ImageView
-                        android:id="@+id/views_image"
-                        android:layout_toEndOf="@id/publication_time"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/invisible_24px"
-                        android:layout_width="16dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_height="16dp" />
+            <RelativeLayout
+                android:id="@+id/statistic_block"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/count_of_views"
-                        android:layout_toEndOf="@id/views_image"
-                        android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="0"/>
+                <ImageView
+                    android:id="@+id/topic_time_image"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_centerVertical="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/calendar_24px"
+                    android:layout_marginStart="5dp"
+                    />
 
-                    <ImageView
-                        android:id="@+id/thumbs_up"
-                        android:layout_toEndOf="@id/count_of_views"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/like_it_filled_100px"
-                        android:layout_width="16dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_height="16dp" />
+                <TextView
+                    android:id="@+id/publication_time"
+                    android:layout_toEndOf="@id/topic_time_image"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:textSize="12sp"
+                    android:text="0"/>
 
-                    <TextView
-                        android:id="@+id/rating_view"
-                        android:layout_toEndOf="@id/thumbs_up"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
-                        android:layout_centerVertical="true"
-                        android:text="0"/>
+                <ImageView
+                    android:id="@+id/views_image"
+                    android:layout_toEndOf="@id/publication_time"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/invisible_24px"
+                    android:layout_width="16dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_height="16dp" />
 
-                    <ImageView
-                        android:id="@+id/comments_image"
-                        android:layout_toEndOf="@id/rating_view"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/comments_48px"
-                        android:layout_width="16dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_height="16dp" />
+                <TextView
+                    android:id="@+id/count_of_views"
+                    android:layout_toEndOf="@id/views_image"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_marginStart="5dp"
+                    android:text="0"/>
 
-                    <TextView
-                        android:id="@+id/comments_count"
-                        android:layout_toEndOf="@id/comments_image"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
-                        android:layout_centerVertical="true"
-                        android:text="0"/>
+                <ImageView
+                    android:id="@+id/thumbs_up"
+                    android:layout_toEndOf="@id/count_of_views"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/like_it_filled_100px"
+                    android:layout_width="16dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_height="16dp" />
 
-                </RelativeLayout>
+                <TextView
+                    android:id="@+id/rating_view"
+                    android:layout_toEndOf="@id/thumbs_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_marginStart="6dp"
+                    android:layout_centerVertical="true"
+                    android:text="0"/>
+
+                <ImageView
+                    android:id="@+id/comments_image"
+                    android:layout_toEndOf="@id/rating_view"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/comments_48px"
+                    android:layout_width="16dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_height="16dp" />
+
+                <TextView
+                    android:id="@+id/comments_count"
+                    android:layout_toEndOf="@id/comments_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_marginStart="6dp"
+                    android:layout_centerVertical="true"
+                    android:text="0"/>
 
             </RelativeLayout>
 

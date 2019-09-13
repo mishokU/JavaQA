@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -36,7 +37,10 @@
                         android:id="@+id/win_progress_bar"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        style="@android:style/Widget.DeviceDefault.ProgressBar.Small.Title"/>
+                        android:layout_alignParentStart="true"
+                        style="?android:progressBarStyleHorizontal"
+                        android:progressDrawable="@drawable/progress_circle"
+                        android:layout_marginStart="0dp" />
 
                     <TextView
                         android:id="@+id/win_percent_from_progress_bar"
@@ -74,7 +78,9 @@
                         android:id="@+id/lose_progress_bar"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        style="@android:style/Widget.DeviceDefault.ProgressBar.Small.Title"/>
+                        style="?android:progressBarStyleHorizontal"
+                        android:max="100"
+                        android:progressDrawable="@drawable/progress_circle"/>
 
                     <TextView
                         android:id="@+id/lose_percent_from_progress_bar"
@@ -112,7 +118,9 @@
                         android:id="@+id/draw_progress_bar"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        style="@android:style/Widget.DeviceDefault.ProgressBar.Small.Title"/>
+                        style="?android:progressBarStyleHorizontal"
+                        android:progressDrawable="@drawable/progress_circle"
+                        android:max="100"/>
 
                     <TextView
                         android:id="@+id/draw_percent_from_progress_bar"
@@ -250,15 +258,131 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/category_statistic_recycler_view"
+            <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_height="wrap_content">
+                android:layout_marginEnd="10dp">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/category_item_style"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/java_core"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="18sp"
+                        android:text="1 - Java Core"/>
+
+                    <ProgressBar
+                        android:id="@+id/java_core_progress_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toEndOf="@+id/java_core"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/category_item_progress_bar_style"
+                        android:max="100"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/category_item_style"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/name_of_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="18sp"
+                        android:text="2 - Build Tools"/>
+
+                    <ProgressBar
+                        android:id="@+id/build_tools_progress_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toEndOf="@+id/name_of_item"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/category_item_progress_bar_style"
+                        android:max="100"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/category_item_style"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/vsc_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="18sp"
+                        android:text="3 - VSC"/>
+
+                    <ProgressBar
+                        android:id="@+id/vsc_progress_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toEndOf="@+id/vsc_name"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/category_item_progress_bar_style"
+                        android:max="100"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/category_item_style"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/databases_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="18sp"
+                        android:text="4 - Databases"/>
+
+                    <ProgressBar
+                        android:id="@+id/databases_progress_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toEndOf="@+id/databases_name"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/category_item_progress_bar_style"
+                        android:max="100"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -89,17 +89,24 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     private void createStatisticData() {
         DatabaseReference statisticReference = firebaseDatabase.child("Users").child(user_id).child("statistic");
         HashMap<String, Integer> statisticMap = new HashMap<>();
-        statisticMap.put("Wins", 0);
-        statisticMap.put("Loses", 0);
-        statisticMap.put("Draws", 0);
-        statisticMap.put("Games", 0);
-        statisticMap.put("Average_score", 0);
-        statisticMap.put("Games_without_loses", 0);
 
-        statisticMap.put("java_core_wins", 0);
-        statisticMap.put("build_tools_wins", 0);
-        statisticMap.put("vsc_wins", 0);
-        statisticMap.put("databases_wins", 0);
+        statisticMap.put("wins", 0);
+        statisticMap.put("loses", 0);
+        statisticMap.put("draws", 0);
+
+        statisticMap.put("games", 0);
+        statisticMap.put("averageScore", 0);
+        statisticMap.put("gamesWithOutLoses", 0);
+
+        statisticMap.put("javaCoreFullGames", 0);
+        statisticMap.put("buildToolsFullGames", 0);
+        statisticMap.put("vscFullGames", 0);
+        statisticMap.put("databasesFullGames", 0);
+
+        statisticMap.put("javaCoreWins", 0);
+        statisticMap.put("buildToolsWins", 0);
+        statisticMap.put("vscWins", 0);
+        statisticMap.put("databasesWins", 0);
 
         statisticReference.setValue(statisticMap);
     }

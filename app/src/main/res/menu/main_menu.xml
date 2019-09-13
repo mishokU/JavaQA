@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:title="profile"
-        android:icon="@drawable/user_48px"
-        app:showAsAction="always"
+        android:icon="@drawable/user_96px"
+        app:showAsAction="ifRoom"
         android:id="@+id/profile"/>
 
     <item
         app:showAsAction="always"
-        android:icon="@drawable/filled_appointment_reminders_60px"
+        android:icon="@drawable/appointment_reminders_48px"
         android:title="notifications"
         android:id="@+id/notifications"/>
 

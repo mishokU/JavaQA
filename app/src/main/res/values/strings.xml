@@ -18,4 +18,12 @@
     <string name="friends_from_facebook">Друзья из Facebook</string>
     <string name="invite">Пригласить</string>
     <string name="new_game_button">Новая игра</string>
+
+    <string-array name="category">
+        <item>Новые</item>
+        <item>Интересные</item>
+        <item>Последние</item>
+        <item>Популярные</item>
+        <item>Мои вопросы</item>
+    </string-array>
 </resources>

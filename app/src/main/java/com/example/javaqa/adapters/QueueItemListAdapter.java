@@ -8,9 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.javaqa.R;
-import com.example.javaqa.holders.ProfileCategoryItemHolder;
 import com.example.javaqa.holders.QueueItemHolder;
-import com.example.javaqa.items.ProfileCategoryItem;
 import com.example.javaqa.items.QueueItem;
 
 import java.util.ArrayList;

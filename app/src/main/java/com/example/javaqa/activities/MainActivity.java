@@ -2,16 +2,21 @@ package com.example.javaqa.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.javaqa.ActivityUtils.LaunchActivityHelper;
+import com.example.javaqa.ActivityUtils.RevealAnimation;
 import com.example.javaqa.DataBase.Authentication.Authentication.SignIn;
 import com.example.javaqa.R;
 import com.example.javaqa.adapters.MainActivityViewPagerAdapter;
@@ -23,6 +28,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -88,9 +95,13 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mViewPagerAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
-        mTabLayout.getTabAt(0).setIcon(R.drawable.student_48px);
-        mTabLayout.getTabAt(1).setIcon(R.drawable.controller_48px);
-        mTabLayout.getTabAt(2).setIcon(R.drawable.comments_48px);
+        Objects.requireNonNull(mTabLayout.getTabAt(0)).setIcon(R.drawable.student_96px);
+        Objects.requireNonNull(mTabLayout.getTabAt(1)).setIcon(R.drawable.controller_96px);
+        Objects.requireNonNull(mTabLayout.getTabAt(2)).setIcon(R.drawable.comments_96px);
+
+        mTabLayout.getTabAt(0).getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        mTabLayout.getTabAt(1).getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        mTabLayout.getTabAt(2).getIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -109,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         title = "Q&A";
                 }
-                getSupportActionBar().setTitle(title);
+                Objects.requireNonNull(getSupportActionBar()).setTitle(title);
             }
 
             @Override
@@ -138,9 +149,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchActivity(Class activity){
-        Intent intent = new Intent(this,activity);
+        Intent intent = new Intent(this, activity);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        overridePendingTransition(0, 0);
     }
 
     private void setUpAppBar() {

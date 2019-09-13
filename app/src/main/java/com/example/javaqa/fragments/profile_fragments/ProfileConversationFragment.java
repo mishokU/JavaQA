@@ -16,7 +16,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.javaqa.R;
 import com.example.javaqa.adapters.ConversationAdapter;
-import com.example.javaqa.items.ConversationItem;
+import com.example.javaqa.items.PostData;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -28,8 +37,15 @@ public class ProfileConversationFragment extends Fragment {
 
   private RecyclerView.Adapter adapter;
   private RecyclerView.LayoutManager layoutManager;
-  private ArrayList<ConversationItem> conversationItems;
+  private ArrayList<PostData> posts;
   private SwipeRefreshLayout swipeRefreshLayout;
+
+  private DatabaseReference databaseReference;
+  private DatabaseReference allPostsReference;
+  private FirebaseUser firebaseUser;
+  private Query userNameQuery;
+  private FirebaseStorage firebaseStorage;
+  private String userId;
 
   @Nullable
   @Override
@@ -39,8 +55,17 @@ public class ProfileConversationFragment extends Fragment {
     findViews();
     initFirebase();
     setUpAdapter();
+    setUpSwipeRefresh();
 
     return view;
+  }
+
+  private void setUpSwipeRefresh() {
+    swipeRefreshLayout.setOnRefreshListener(() -> {
+      posts.clear();
+      loadCurrentUserConversations();
+      swipeRefreshLayout.setRefreshing(false);
+    });
   }
 
   private void findViews() {
@@ -49,14 +74,11 @@ public class ProfileConversationFragment extends Fragment {
   }
 
   private void setUpAdapter() {
-    layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+    layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,true);
     ((LinearLayoutManager) layoutManager).setStackFromEnd(true);
-    conversationItems = new ArrayList<>();
-    adapter = new ConversationAdapter(conversationItems);
+    posts = new ArrayList<>();
+    adapter = new ConversationAdapter(posts);
 
-    if(conversationItems.isEmpty()) {
-      conversationItems.add(new ConversationItem());
-    }
     //loadUserData();
 
     recyclerView.setHasFixedSize(true);
@@ -68,7 +90,35 @@ public class ProfileConversationFragment extends Fragment {
   }
 
   private void initFirebase() {
+    firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    assert firebaseUser != null;
+    userId = firebaseUser.getUid();
+    databaseReference = FirebaseDatabase.getInstance().getReference();
+    allPostsReference = databaseReference.child("PostData");
+    //Get to current user information in database;
+    firebaseStorage = FirebaseStorage.getInstance();
 
+    loadCurrentUserConversations();
+  }
+
+  private void loadCurrentUserConversations() {
+    allPostsReference.addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        for(DataSnapshot post: dataSnapshot.getChildren()) {
+          if(post.child("userUrl").getValue().equals(userId)) {
+            PostData postData = post.getValue(PostData.class);
+            posts.add(postData);
+            adapter.notifyDataSetChanged();
+          }
+        }
+      }
+
+      @Override
+      public void onCancelled(@NonNull DatabaseError databaseError) {
+
+      }
+    });
   }
 
 }

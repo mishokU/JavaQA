@@ -14,4 +14,5 @@
     <color name="light_orange">#FC8E43</color>
     <color name="text_button_color">#6F0AAA</color>
     <color name="item_pressed">#CAC7C7</color>
+    <color name="red">#E63737</color>
 </resources>

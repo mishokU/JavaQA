@@ -1,14 +1,9 @@
 package com.example.javaqa.ActivityUtils;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 
-import androidx.appcompat.app.AlertDialog;
-
-import com.example.javaqa.R;
-import com.example.javaqa.activities.java_core.IntroductionActivity;
+import com.example.javaqa.ui.activities.java_core.IntroductionActivity;
 
 public class LaunchActivityHelper {
 

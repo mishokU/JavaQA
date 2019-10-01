@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.javaqa.items.QueueItem;
+import com.example.javaqa.models.QueueItem;
 
 import java.util.ArrayList;
 import java.util.Collections;

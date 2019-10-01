@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/custom_toolbar"/>
+
+        <ProgressBar
+            android:id="@+id/time_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:progressTint="@color/light_orange"
+            android:progress="100"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@color/light_grey"
+            android:layout_height="70dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toStartOf="@+id/score_block"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/game_user_image"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/mytest"/>
+
+                <TextView
+                    android:id="@+id/game_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="18sp"
+                    android:layout_toEndOf="@+id/game_user_image"/>
+
+                <TextView
+                    android:id="@+id/game_user_level_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/game_user_image"
+                    android:layout_below="@id/game_user_name"
+                    android:layout_marginStart="10dp"
+                    android:text="Level: "/>
+
+                <TextView
+                    android:id="@+id/game_level_of_user"
+                    android:layout_width="wrap_content"
+                    android:layout_toEndOf="@id/game_user_level_text"
+                    android:layout_below="@id/game_user_name"
+                    android:layout_marginEnd="10dp"
+                    android:text=""
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/score_block"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/game_user_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text=""/>
+
+                <TextView
+                    android:id="@+id/game_opponent_score"
+                    android:layout_toEndOf="@id/game_user_score"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text=""/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@id/score_block"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/game_opponent_image"
+                    android:layout_width="45dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="45dp"
+                    android:src="@drawable/mytest"/>
+
+                <TextView
+                    android:id="@+id/game_opponent_name"
+                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toStartOf="@+id/game_opponent_image"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/game_opponent_level_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/game_level_of_opponent"
+                    android:layout_below="@id/game_opponent_name"
+                    android:textSize="14sp"
+                    android:text="Level: "/>
+
+                <TextView
+                    android:id="@+id/game_level_of_opponent"
+                    android:layout_width="wrap_content"
+                    android:layout_below="@id/game_opponent_name"
+                    android:layout_marginEnd="10dp"
+                    android:text=""
+                    android:layout_toStartOf="@id/game_opponent_image"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/game_question_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text=""
+                    android:textSize="18sp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="15dp"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/game_answer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:inputType="text"
+                        android:backgroundTint="@color/light_orange"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:layout_centerVertical="true"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</layout>

@@ -1,3 +1,4 @@
+//apply plugin: 'kotlin'
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
@@ -11,6 +12,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -25,21 +31,62 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'de.hdodenhof:circleimageview:3.0.0'
-    implementation 'com.jakewharton:butterknife:10.1.0'
-    implementation 'com.google.firebase:firebase-storage:19.0.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.android.support:design:28.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'com.google.firebase:firebase-auth:19.0.0'
-    implementation "io.reactivex.rxjava3:rxjava:3.0.0-RC2"
-    implementation 'com.google.firebase:firebase-database:19.0.0'
+
+    //Android Jetpack
+    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
+    // Optional : Kotlin extension (https://d.android.com/kotlin/ktx)
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    implementation "androidx.paging:paging-runtime:2.1.0"
+    implementation 'android.arch.persistence.room:rxjava2:1.1.1'
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+
+    //Circle image view
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+    //Butter Knife
+    implementation 'com.jakewharton:butterknife:10.1.0'
     implementation 'com.jakewharton.rxbinding3:rxbinding:3.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-storage:19.0.1'
+    implementation 'com.google.firebase:firebase-auth:19.0.0'
+    implementation 'com.google.firebase:firebase-database:19.1.0'
+
+    //Working with images
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //RxJava
+    implementation "io.reactivex.rxjava3:rxjava:3.0.0-RC2"
+
+    //Utils
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
+    implementation 'android.arch.navigation:navigation-ui:1.0.0'
+
+    implementation "com.squareup.retrofit2:retrofit:2.6.1"
+    implementation "com.squareup.retrofit2:converter-gson:2.6.0"
+    implementation "com.squareup.okhttp:okhttp:2.4.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+
+    implementation 'com.google.dagger:dagger-android:2.23.2'
+    implementation 'com.google.dagger:dagger-android-support:2.23.2'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.23.2'
+
+    /* Dagger2 - default dependency */
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.23.2'
+
+    //kapt "com.android.databinding:compiler:3.2.0-alpha10"
+
 }

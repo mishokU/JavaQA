@@ -11,7 +11,7 @@
         android:fullBackupContent="@xml/backup_descriptor"
         android:allowBackup="true">
 
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW"/>
@@ -19,33 +19,35 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.SingInActivity"
-            android:parentActivityName=".activities.StartActivity"/>
+        <activity android:name=".ui.activities.SingInActivity"
+            android:parentActivityName=".ui.activities.StartActivity"/>
 
-        <activity android:name=".activities.RegistrationActivity"
-            android:parentActivityName=".activities.StartActivity"/>
+        <activity android:name=".ui.activities.RegistrationActivity"
+            android:parentActivityName=".ui.activities.StartActivity"/>
 
-        <activity android:name=".activities.StartActivity"/>
+        <activity android:name=".ui.activities.StartActivity"/>
 
-        <activity android:name=".activities.NewGameActivity"
-            android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".ui.activities.NewGameActivity"
+            android:parentActivityName=".ui.activities.MainActivity"/>
 
-        <activity android:name=".activities.ProfileActivity"
-            android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".ui.activities.ProfileActivity"
+            android:parentActivityName=".ui.activities.MainActivity"/>
 
-        <activity android:name=".activities.java_core.IntroductionActivity"
-            android:parentActivityName=".activities.MainActivity"/>
+        <activity android:name=".ui.activities.java_core.IntroductionActivity"
+            android:parentActivityName=".ui.activities.MainActivity"/>
 
-        <activity android:name=".activities.profile_activities.ProfileEditActivity"
-            android:parentActivityName=".activities.ProfileActivity">
+        <activity android:name=".ui.activities.profile_activities.ProfileEditActivity"
+            android:parentActivityName=".ui.activities.ProfileActivity">
         </activity>
 
-        <activity android:name=".activities.profile_activities.CreatePostActivity"
+        <activity android:name=".ui.activities.profile_activities.CreatePostActivity"
             android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name=".activities.CreateConversationPostActivity" />
+        <activity android:name=".ui.activities.CreateConversationPostActivity" />
 
-        <activity android:name=".activities.OpenConversationItem"/>
+        <activity android:name=".ui.activities.OpenConversationItem"/>
+
+        <activity android:name=".ui.activities.new_game_activities.StartNewGame"/>
 
     </application>
 

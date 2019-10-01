@@ -1,0 +1,79 @@
+package com.example.javaqa.ui.fragments;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.example.javaqa.ActivityUtils.LaunchActivityHelper;
+import com.example.javaqa.R;
+import com.example.javaqa.ui.activities.java_core.IntroductionActivity;
+
+public class LearnFragment extends Fragment {
+
+  private View mView;
+  private LinearLayout mJavaCoreItemList;
+  private LinearLayout mVCSItemList;
+  private LinearLayout mBuildToolsItemList;
+  private LinearLayout mDatabasesItemList;
+
+
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    mView = inflater.inflate(R.layout.fragment_learn,container,false);
+
+    findViews();
+    setOnClicks();
+
+    return mView;
+  }
+
+  private void findViews() {
+    mJavaCoreItemList = mView.findViewById(R.id.java_core_linear_layout);
+    mVCSItemList = mView.findViewById(R.id.version_control_systems_linear_layout);
+    mBuildToolsItemList = mView.findViewById(R.id.build_tools_linear_layout);
+    mDatabasesItemList = mView.findViewById(R.id.data_base_linear_layout);
+  }
+
+  private void setOnClicks() {
+    LaunchActivityHelper javaCore = new LaunchActivityHelper();
+    RelativeLayout relativeLayout = (RelativeLayout)mJavaCoreItemList.getChildAt(0);
+    relativeLayout.setOnClickListener(view -> launchActivity(IntroductionActivity.class));
+
+    /*for(int i = 0; i < mJavaCoreItemList.getChildCount(); i++){
+      final int index = i;
+      RelativeLayout relativeLayout = (RelativeLayout)mJavaCoreItemList.getChildAt(i);
+      relativeLayout.setOnClickListener(view -> javaCore.JavaCoreIndexingActivityHelper(getActivity(),index));
+    }
+    for(int i = 0; i < mVCSItemList.getChildCount(); i++){
+      final int index = i;
+      RelativeLayout relativeLayout = (RelativeLayout)mVCSItemList.getChildAt(i);
+      relativeLayout.setOnClickListener(view -> new LaunchActivityHelper().VCSActivityHelper(getActivity(),index));
+    }
+
+    for(int i = 0; i < mBuildToolsItemList.getChildCount(); i++){
+      final int index = i;
+      RelativeLayout relativeLayout = (RelativeLayout)mBuildToolsItemList.getChildAt(i);
+      relativeLayout.setOnClickListener(view -> new LaunchActivityHelper().BuildToolsActivityHelper(getActivity(),index));
+    }
+
+    for(int i = 0; i < mDatabasesItemList.getChildCount(); i++){
+      final int index = i;
+      RelativeLayout relativeLayout = (RelativeLayout)mDatabasesItemList.getChildAt(i);
+      relativeLayout.setOnClickListener(view -> new LaunchActivityHelper().DataBasesActivityHelper(getActivity(),index));
+    }*/
+  }
+
+  public void launchActivity(Class activity){
+    Intent intent = new Intent(getContext(), activity);
+    startActivity(intent);
+  }
+}

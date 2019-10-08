@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/empty_list_text"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/empty_list"
+        android:visibility="gone"
+        android:textSize="18sp"
+        android:layout_height="wrap_content" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -40,57 +57,13 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
+                        android:layout_marginStart="10dp"
                         android:layout_height="wrap_content">
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_margin="10dp"
-                            android:id="@+id/rating_block">
-
-                            <androidx.appcompat.widget.AppCompatImageButton
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:id="@+id/increment_arrow"
-                                android:layout_centerHorizontal="true"
-                                android:src="@drawable/chevron_up_24px"
-                                android:background="@null" />
-
-                            <TextView
-                                android:id="@+id/rating_full_item"
-                                android:layout_width="wrap_content"
-                                android:layout_below="@id/increment_arrow"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_centerHorizontal="true"
-                                android:textSize="16sp"
-                                android:text="12"/>
-
-                            <androidx.appcompat.widget.AppCompatImageButton
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_centerHorizontal="true"
-                                android:id="@+id/decrement_arrow"
-                                android:layout_below="@id/rating_full_item"
-                                android:background="@null"
-                                android:src="@drawable/chevron_down_24px"
-                                />
-
-                            <androidx.appcompat.widget.AppCompatImageButton
-                                android:id="@+id/favourite_conversation_star"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/toggle_favourite_button"
-                                android:layout_below="@id/decrement_arrow"
-                                />
-
-                        </RelativeLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_toEndOf="@id/rating_block"
                             android:layout_marginTop="10dp"
-                            android:layout_marginEnd="25dp"
+                            android:layout_marginEnd="10dp"
                             android:orientation="vertical"
                             android:layout_height="wrap_content">
 
@@ -119,11 +92,36 @@
                                 android:layout_height="wrap_content"
                                 android:text=""/>
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_gravity="end"
+                            <RelativeLayout
+                                android:layout_width="match_parent"
                                 android:layout_marginBottom="10dp"
+                                android:layout_marginTop="10dp"
                                 android:layout_height="wrap_content">
+
+                                <com.like.LikeButton
+                                    android:layout_width="16dp"
+                                    android:layout_height="16dp"
+                                    android:layout_centerVertical="true"
+                                    android:id="@+id/like_button"
+                                    app:icon_type="heart"
+                                    app:icon_size="16dp">
+
+                                </com.like.LikeButton>
+
+                                <TextView
+                                    android:id="@+id/like_count"
+                                    android:layout_width="wrap_content"
+                                    android:layout_toEndOf="@id/like_button"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="5dp"
+                                    android:text="0"
+                                    android:layout_height="wrap_content" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_height="wrap_content">
 
                                 <RelativeLayout
                                     android:layout_width="wrap_content"
@@ -191,7 +189,9 @@
                                     android:layout_height="30dp"
                                     android:src="@drawable/mytest"/>
 
-                            </LinearLayout>
+                                </LinearLayout>
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
@@ -234,6 +234,7 @@
                         android:id="@+id/spinner"
                         android:layout_width="wrap_content"
                         android:layout_alignParentEnd="true"
+                        android:backgroundTint="@color/light_orange"
                         android:layout_height="wrap_content"/>
 
                 </RelativeLayout>
@@ -243,8 +244,6 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_width="match_parent"
-                    tools:listitem="@layout/item_conversation_answer"
-                    tools:itemCount="10"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
@@ -265,6 +264,6 @@
         app:fabSize="normal"
         app:layout_anchor="@null"
         android:scaleType="fitCenter"
-        android:src="@android:drawable/ic_input_add"/>
+        android:src="@drawable/plus_math_16px"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

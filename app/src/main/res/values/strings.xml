@@ -18,6 +18,7 @@
     <string name="friends_from_facebook">Друзья из Facebook</string>
     <string name="invite">Пригласить</string>
     <string name="new_game_button">Новая игра</string>
+    <string name="empty_list">Empty List</string>
 
     <string-array name="category">
         <item>Новые</item>

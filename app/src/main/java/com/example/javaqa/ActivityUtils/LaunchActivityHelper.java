@@ -16,20 +16,6 @@ public class LaunchActivityHelper {
     public void JavaCoreIndexingActivityHelper(Activity activity, int index){
         if(index == 0) {
             launchActivity(activity, IntroductionActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        } else if(index == 1) {
-
-        } else if(index == 2) {
-
-        } else if(index == 3) {
-
-        } else if(index == 4) {
-
-        } else if(index == 5) {
-
-        } else if(index == 6) {
-
-        } else if(index == 7) {
-
         }
     }
 

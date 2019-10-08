@@ -1,6 +1,6 @@
 package com.example.javaqa.models;
 
-public class GameStatistics {
+public class GameStatistics  {
 
   private Integer wins;
   private Integer loses;

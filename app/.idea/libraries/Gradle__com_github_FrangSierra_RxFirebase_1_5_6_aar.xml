@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.FrangSierra:RxFirebase:1.5.6@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/763155d81076411619088b06e30edd2b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/763155d81076411619088b06e30edd2b/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.FrangSierra/RxFirebase/1.5.6/60c50da380b0cf21d3632d0a547366a5f4f82f8d/RxFirebase-1.5.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

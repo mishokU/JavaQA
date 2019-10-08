@@ -1,39 +1,63 @@
 package com.example.javaqa.viewmodels;
 
 import android.app.Application;
-import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.javaqa.models.PostData;
-import com.example.javaqa.repository.localDatabase.PostRepository;
-import com.example.javaqa.repository.mainRep.MainRepository;
-import com.example.javaqa.repository.remoteDatabase.RemotePostsService;
-import com.example.javaqa.repository.utils.Resource;
+import com.example.javaqa.repository.mainRepositories.PostsMainRepository;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.inject.Provider;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 public class PostsViewModel extends AndroidViewModel {
 
-  private final MainRepository mainRepository;
+  private MutableLiveData<List<PostData>> mPosts = new MutableLiveData<>();
+  private final PostsMainRepository mPostsMainRepository;
+  private ProgressBar mProgressBar;
 
   public PostsViewModel(@NonNull Application application) {
     super(application);
-    mainRepository = MainRepository.getInstance(application);
+    mPostsMainRepository = PostsMainRepository.getInstance(application);
+    mPostsMainRepository.loadPosts();
   }
 
-  public LiveData<Resource<List<PostData>>> getAllPosts() {
-      Log.d(TAG, "getAllPosts: title" + mainRepository.getAllPosts().toString());
-    return mainRepository.getAllPosts();
+  public void setProgressBar(ProgressBar mProgressBar) {
+    this.mProgressBar = mProgressBar;
+    this.mProgressBar.setVisibility(View.VISIBLE);
   }
+
+  public void update(PostData postData){
+    mPostsMainRepository.update(postData);
+  }
+
+  public void insert(PostData postData){
+    mPostsMainRepository.insert(postData);
+  }
+
+  public void delete(PostData postData){
+    mPostsMainRepository.delete(postData);
+  }
+
+  public String getKey(){
+    return mPostsMainRepository.getKey();
+  }
+
+  public LiveData<List<PostData>> getAllPosts() {
+    mPostsMainRepository.getAllPosts().observeForever(postData -> {
+      if(!postData.isEmpty()) {
+         mProgressBar.setVisibility(View.GONE);
+      } else {
+        mProgressBar.setVisibility(View.VISIBLE);
+      }
+      mPosts.postValue(postData);
+    });
+    return mPosts;
+  }
+
 }

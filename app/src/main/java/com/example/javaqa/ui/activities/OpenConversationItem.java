@@ -1,39 +1,50 @@
 package com.example.javaqa.ui.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.javaqa.R;
 import com.example.javaqa.models.PostData;
+import com.example.javaqa.models.UserMainData;
+import com.example.javaqa.ui.adapters.PostAnswerAdapter;
+import com.example.javaqa.ui.fragments.BottomSheetCommentsKeyBoard;
+import com.example.javaqa.viewmodels.CommentsViewModel;
+import com.example.javaqa.viewmodels.PostsViewModel;
+import com.example.javaqa.viewmodels.UserViewModel;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.chip.ChipGroup;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.Binds;
 
 public class OpenConversationItem extends AppCompatActivity {
 
-  @BindView(R.id.increment_arrow) AppCompatImageButton incrementRatingArrow;
-  @BindView(R.id.decrement_arrow) AppCompatImageButton decrementRatingArrow;
-  @BindView(R.id.rating_full_item) TextView ratingField;
-  @BindView(R.id.favourite_conversation_star) AppCompatImageButton favouritePostButton;
   @BindView(R.id.title_full_item) TextView titleField;
+  @BindView(R.id.like_button) LikeButton likeButton;
+  @BindView(R.id.empty_list_text) TextView emptyListText;
+  @BindView(R.id.like_count) TextView likeCount;
   @BindView(R.id.description_full_item) TextView descriptionField;
   @BindView(R.id.chip_group_for_full_item) ChipGroup chipGroup;
   @BindView(R.id.user_name_full_item) TextView userName;
@@ -45,11 +56,17 @@ public class OpenConversationItem extends AppCompatActivity {
   @BindView(R.id.toolbar) Toolbar toolbar;
   @BindView(R.id.comments_count) TextView commentsCount;
   @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
+  @BindView(R.id.fab) FloatingActionButton openKeyBoardFab;
+  @BindView(R.id.progress_bar) ProgressBar progressBar;
+
+  private PostAnswerAdapter mPostAnswerAdapter;
+  private RecyclerView.LayoutManager mLayoutManager;
+  private BottomSheetCommentsKeyBoard bottomSheetCommentsKeyBoard;
 
   private PostData postData;
-  private DatabaseReference databaseReference;
-  private DatabaseReference currentPostReference;
-  private FirebaseStorage firebaseStorage;
+  private PostsViewModel mPostsViewModel;
+  private CommentsViewModel mCommentsViewModel;
+  private UserViewModel mUserViewModel;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,65 +75,85 @@ public class OpenConversationItem extends AppCompatActivity {
     ButterKnife.bind(this);
 
     setUpToolbar();
-    setUpAdapter();
     catchDataFromBundle();
-    updateData();
-    setUpRatingArrows();
-    setDataToFields();
+    setUpAdapter();
+    setCommentsViewModel();
+    addComment();
+    setUpLikes();
+    setCurrentPostData();
     setUpSwipeRefresh();
+    setBottomSheet();
+  }
+
+  private void setBottomSheet() {
+    bottomSheetCommentsKeyBoard = new BottomSheetCommentsKeyBoard();
+    bottomSheetCommentsKeyBoard.setViewModel(mCommentsViewModel);
+    bottomSheetCommentsKeyBoard.setUserViewModel(mUserViewModel);
+  }
+
+  private void addComment() {
+    openKeyBoardFab.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        bottomSheetCommentsKeyBoard.show(getSupportFragmentManager(), "input");
+      }
+    });
+  }
+
+  private void setCommentsViewModel() {
+    mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+
+    mPostsViewModel = ViewModelProviders.of(this).get(PostsViewModel.class);
+    mPostsViewModel.update(postData);
+
+    mCommentsViewModel = ViewModelProviders.of(this).get(CommentsViewModel.class);
+    mCommentsViewModel.setProgressBar(progressBar,emptyListText);
+    mCommentsViewModel.setPathToComments(postData.getKey());
+
+    mCommentsViewModel.getComments().observe(this,
+        postAnswerModels -> mPostAnswerAdapter.setComments(postAnswerModels));
   }
 
   private void setUpSwipeRefresh() {
-    swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-      @Override
-      public void onRefresh() {
+    swipeRefreshLayout.setOnRefreshListener(() -> swipeRefreshLayout.setRefreshing(false));
+  }
 
-        swipeRefreshLayout.setRefreshing(false);
+
+  private void setUpLikes() {
+    likeButton.setOnLikeListener(new OnLikeListener() {
+      @Override
+      public void liked(LikeButton likeButton) {
+        postData.setRating(1);
+        mPostsViewModel.update(postData);
+      }
+
+      @Override
+      public void unLiked(LikeButton likeButton) {
+        postData.setRating(-1);
+        mPostsViewModel.update(postData);
       }
     });
   }
 
-  private void setUpRatingArrows() {
-    incrementRatingArrow.setOnClickListener(view -> {
-      int rating = Integer.parseInt(ratingField.getText().toString());
-      ratingField.setText(String.valueOf(++rating));
-      currentPostReference.child("rating").setValue(ratingField.getText().toString());
-    });
-
-    decrementRatingArrow.setOnClickListener(view -> {
-      int rating = Integer.parseInt(ratingField.getText().toString());
-      ratingField.setText(String.valueOf(--rating));
-      currentPostReference.child("rating").setValue(ratingField.getText().toString());
-    });
-
+  private void setUpAdapter() {
+    mLayoutManager = new LinearLayoutManager(getApplicationContext(),RecyclerView.VERTICAL,true);
+    ((LinearLayoutManager) mLayoutManager).setStackFromEnd(true);
+    mPostAnswerAdapter = new PostAnswerAdapter();
+    recyclerView.setHasFixedSize(true);
+    recyclerView.setLayoutManager(mLayoutManager);
+    recyclerView.setAdapter(mPostAnswerAdapter);
   }
 
-  private void updateData() {
-    databaseReference = FirebaseDatabase.getInstance().getReference();
-    currentPostReference = databaseReference.child("PostData").child(postData.getKey());
-    currentPostReference.addValueEventListener(new ValueEventListener() {
-      @Override
-      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        PostData currentData = dataSnapshot.getValue(PostData.class);
-        postData.setValues(currentData);
-      }
-
-      @Override
-      public void onCancelled(@NonNull DatabaseError databaseError) {
-
-      }
-    });
-  }
-
-  private void setDataToFields() {
-    ratingField.setText(postData.getRating());
+  private void setCurrentPostData() {
     titleField.setText(postData.getTitle());
     descriptionField.setText(postData.getDescription());
     userName.setText(postData.getUserName());
-    //Picasso.get().load(postData.getUserImageUrl()).placeholder(R.drawable.mytest).into(userImage);
     publicationTime.setText(postData.getPublicationTime());
-    countOfViews.setText(postData.getCountOfViews());
-    commentsCount.setText(postData.getComments());
+
+    likeCount.setText(String.valueOf(postData.getRating()));
+    countOfViews.setText(String.valueOf(postData.getCountOfViews()));
+    commentsCount.setText(String.valueOf(postData.getComments()));
+    //Picasso.get().load(postData.getUserImageUrl()).placeholder(R.drawable.mytest).into(userImage);
   }
 
   private void setUpToolbar() {
@@ -132,10 +169,10 @@ public class OpenConversationItem extends AppCompatActivity {
     Bundle bundle = intent.getExtras();
     assert bundle != null;
     postData = (PostData) bundle.getSerializable("ItemData");
-  }
 
-  private void setUpAdapter() {
-
+    if(postData !=  null) {
+      postData.setCountOfViews(1);
+    }
   }
 
   @Override

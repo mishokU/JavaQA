@@ -8,13 +8,21 @@ import androidx.lifecycle.LiveData;
 import androidx.paging.PagedList;
 
 import com.example.javaqa.models.FriendItem;
+import com.example.javaqa.repository.mainRepositories.FriendsMainRepository;
+
+import java.util.List;
 
 public class FriendsViewModel extends AndroidViewModel {
 
-  private LiveData<PagedList<FriendItem>> mFriends;
+  private FriendsMainRepository friendsMainRepository;
 
   public FriendsViewModel(@NonNull Application application) {
     super(application);
+    friendsMainRepository = FriendsMainRepository.getInstance(application);
+  }
+
+  public LiveData<List<FriendItem>> getFriends(){
+    return friendsMainRepository.getFriends();
   }
 
 }

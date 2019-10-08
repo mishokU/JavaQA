@@ -1,15 +1,35 @@
 package com.example.javaqa.models;
 
-public class FriendItem {
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import java.io.Serializable;
+
+@Entity(tableName = "table_friends")
+public class FriendItem implements Serializable {
+
+  @PrimaryKey(autoGenerate = true)
+  private int id;
 
   private String imageUrl;
   private boolean mOnline;
   private boolean switcher = true;
   private String mUserName;
 
+  public FriendItem(){
+
+  }
+
   public FriendItem(String currentUserName, String currentUserImage) {
     this.mUserName = currentUserName;
     this.imageUrl = currentUserImage;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public boolean isSwitcher() {

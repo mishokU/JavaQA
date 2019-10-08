@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_marginBottom="5dp"
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
@@ -15,113 +16,103 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:id="@+id/rating_block">
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:id="@+id/increment_arrow"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/chevron_up_24px"
-                    android:background="@null" />
-
-                <TextView
-                    android:id="@+id/rationg_full_item"
-                    android:layout_width="wrap_content"
-                    android:layout_below="@id/increment_arrow"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="16sp"
-                    android:text="12"/>
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/decrement_arrow"
-                    android:layout_below="@id/rationg_full_item"
-                    android:background="@null"
-                    android:src="@drawable/chevron_down_24px"
-                    />
-
-            </RelativeLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_toEndOf="@id/rating_block"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="25dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 android:orientation="vertical"
                 android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:id="@+id/title_full_item"
+                    android:id="@+id/title_answer_item"
                     android:text="wefwefewjkfewpfoewjfepwjf
                                 epwwpfewpfepwfjwpfjwpfjpwofjpwfjp
                                 wfjpwjfpwfjepwofejwopfjepwfjepwjfepwjfpw"
                     android:layout_height="wrap_content" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="end"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_height="wrap_content">
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:layout_height="wrap_content">
+                    <com.like.LikeButton
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/like_button"
+                        app:icon_type="heart"
+                        app:icon_size="16dp">
 
-                        <TextView
-                            android:id="@+id/user_name_full_item"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Misha Usov"/>
+                    </com.like.LikeButton>
+
+                    <TextView
+                        android:id="@+id/like_count"
+                        android:layout_width="wrap_content"
+                        android:layout_toEndOf="@id/like_button"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:text="0"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_height="wrap_content">
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_below="@+id/user_name_full_item">
-
-
-                            <ImageView
-                                android:id="@+id/topic_time_image"
-                                android:layout_width="16dp"
-                                android:layout_height="16dp"
-                                android:layout_centerVertical="true"
-                                android:scaleType="centerInside"
-                                android:src="@drawable/calendar_24px" />
+                            android:layout_marginEnd="5dp"
+                            android:layout_height="wrap_content">
 
                             <TextView
-                                android:id="@+id/publication_time"
-                                android:layout_toEndOf="@id/topic_time_image"
-                                android:layout_centerVertical="true"
+                                android:id="@+id/user_name_answer_item"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="5dp"
-                                android:textSize="12sp"
-                                android:text="0"/>
+                                android:text="Misha Usov"/>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_below="@+id/user_name_answer_item">
+
+                                <ImageView
+                                    android:id="@+id/topic_time_image"
+                                    android:layout_width="16dp"
+                                    android:layout_height="16dp"
+                                    android:layout_centerVertical="true"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/calendar_24px"
+                                    android:layout_marginStart="5dp" />
+
+                                <TextView
+                                    android:id="@+id/publication_time"
+                                    android:layout_toEndOf="@id/topic_time_image"
+                                    android:layout_centerVertical="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:textSize="12sp"
+                                    android:text="0"/>
+
+                            </RelativeLayout>
 
                         </RelativeLayout>
 
-                    </RelativeLayout>
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:id="@+id/user_image_answer_item"
+                            android:layout_height="30dp"
+                            android:src="@drawable/mytest"/>
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="30dp"
-                        android:layout_gravity="center_vertical"
-                        android:id="@+id/user_image_full_item"
-                        android:layout_height="30dp"
-                        android:src="@drawable/mytest"/>
+                    </LinearLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
 
             </LinearLayout>
 

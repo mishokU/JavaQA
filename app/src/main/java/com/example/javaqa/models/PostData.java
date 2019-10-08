@@ -1,62 +1,50 @@
 package com.example.javaqa.models;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-@Entity(tableName = "table_posts")
 public class PostData implements Serializable {
 
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public void setUserUrl(String userUrl) {
-    this.userUrl = userUrl;
-  }
-
-  @PrimaryKey(autoGenerate = true)
-  private int id;
-  @SerializedName("title")
   private String title;
-  @SerializedName("hashtags")
   private String hashtags;
-  @SerializedName("comments")
-  private String comments;
-  @SerializedName("userUrl")
   private String userUrl;
-  @SerializedName("username")
   private String userName;
-
   private String userImageUrl;
-  @SerializedName("type")
   private String type;
-  @SerializedName("publicationTime")
   private String publicationTime;
-  @SerializedName("countOfViews")
-  private String countOfViews;
-  @SerializedName("description")
   private String description;
-  @SerializedName("rating")
-  private String rating;
-
   private String key;
 
+  private int rating;
+  private int comments;
+  private int countOfViews;
+
+  @Ignore
   public PostData() {}
 
-  public PostData(String title, String hashtags, String comments, String userUrl,
-                  String type, String publicationTime, String countOfViews, String description, String rating, String key) {
+  public PostData(String title,
+                  String description,
+                  String hashtags,
+                  String userUrl,
+                  String userName,
+                  String userImageUrl,
+                  int rating,
+                  String publicationTime,
+                  int countOfViews,
+                  int comments,
+                  String type,
+                  String key) {
 
     this.userUrl = userUrl;
     this.title = title;
     this.hashtags = hashtags;
+    this.userName = userName;
+    this.userImageUrl = userImageUrl;
     this.comments = comments;
     this.type = type;
     this.publicationTime = publicationTime;
@@ -66,22 +54,15 @@ public class PostData implements Serializable {
     this.key = key;
   }
 
-  public void setValues(PostData postData) {
-    this.title = postData.getTitle();
-    this.comments = postData.getComments();
-    this.type = postData.getType();
-    this.publicationTime = postData.getPublicationTime();
-    this.countOfViews = postData.getCountOfViews();
-    this.description = postData.getDescription();
-    this.rating = postData.getRating();
-    this.key = postData.getKey();
-  }
+  public void setUserUrl(String userUrl) {
+      this.userUrl = userUrl;
+    }
 
-  public String getComments(){
+  public int getComments(){
     return comments;
   }
 
-  public void setComments(String comments) {
+  public void setComments(int comments) {
     this.comments = comments;
   }
 
@@ -101,12 +82,12 @@ public class PostData implements Serializable {
     this.publicationTime = publicationTime;
   }
 
-  public String getCountOfViews() {
+  public int getCountOfViews() {
     return countOfViews;
   }
 
-  public void setCountOfViews(String countOfViews) {
-    this.countOfViews = countOfViews;
+  public void setCountOfViews(int countOfViews) {
+    this.countOfViews += countOfViews;
   }
 
   public String getUserData() {
@@ -141,12 +122,12 @@ public class PostData implements Serializable {
     this.type = type;
   }
 
-  public String getRating() {
+  public int getRating() {
     return rating;
   }
 
-  public void setRating(String rating) {
-    this.rating = rating;
+  public void setRating(int rating) {
+    this.rating += rating;
   }
 
   public String getUserImageUrl() {

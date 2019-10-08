@@ -8,6 +8,7 @@ public class QueueItem {
   public QueueItem(String statement,int index){
     this.statement = statement;
     this.index = index;
+
   }
 
   public String getStatement() {

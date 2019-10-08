@@ -58,8 +58,8 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
     //Firebase
-    implementation 'com.google.firebase:firebase-storage:19.0.1'
-    implementation 'com.google.firebase:firebase-auth:19.0.0'
+    implementation 'com.google.firebase:firebase-storage:19.1.0'
+    implementation 'com.google.firebase:firebase-auth:19.1.0'
     implementation 'com.google.firebase:firebase-database:19.1.0'
 
     //Working with images
@@ -86,7 +86,23 @@ dependencies {
 
     /* Dagger2 - default dependency */
     annotationProcessor 'com.google.dagger:dagger-compiler:2.23.2'
+    //RxFirebase
+    implementation 'com.github.FrangSierra:RxFirebase:1.5.6'
+
+    implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 
     //kapt "com.android.databinding:compiler:3.2.0-alpha10"
 
+}
+
+buildscript {
+
+    repositories {             // add this tag, if you don't have with repo
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.google.gms:google-services:4.3.2'
+    }
 }

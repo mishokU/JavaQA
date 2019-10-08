@@ -56,4 +56,14 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:progressBackgroundTint="@color/light_orange"
+        android:progressBackgroundTintMode="multiply"
+        android:visibility="gone"
+        style="@style/Widget.AppCompat.ProgressBar"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

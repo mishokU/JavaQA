@@ -48,7 +48,8 @@ public class GamesStatusFragment extends Fragment {
   }
 
   private void setClicks() {
-    newGameButton.setOnClickListener(view -> launchActivityHelper.launchActivity(getActivity(), NewGameActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION));
+    newGameButton.setOnClickListener(view -> launchActivityHelper.launchActivity(getActivity(),
+        NewGameActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION));
   }
 
   private void setUpFriendListAdapter() {

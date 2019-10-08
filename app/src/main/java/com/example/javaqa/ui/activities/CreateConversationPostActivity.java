@@ -10,11 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.javaqa.R;
 import com.example.javaqa.models.PostData;
+import com.example.javaqa.models.UserMainData;
+import com.example.javaqa.repository.remoteDatabase.firebase.FirebaseServerInstance;
 import com.example.javaqa.viewmodels.PostsViewModel;
+import com.example.javaqa.viewmodels.UserViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -23,6 +29,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.jakewharton.rxbinding3.view.RxView;
+import com.jakewharton.rxbinding3.widget.RxTextView;
+import com.jakewharton.rxbinding3.widget.TextViewTextChangeEvent;
+import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -31,6 +41,8 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 
 public class CreateConversationPostActivity extends AppCompatActivity {
 
@@ -45,14 +57,9 @@ public class CreateConversationPostActivity extends AppCompatActivity {
   @BindView(R.id.add_chip) MaterialButton addChip;
   @BindView(R.id.root) LinearLayout linearLayout;
 
-  private DatabaseReference databaseReference;
-  private DatabaseReference userReference;
-  private FirebaseAuth firebaseAuth;
-  private FirebaseUser firebaseUser;
-  private FirebaseStorage firebaseStorage;
-  private String userId;
-
   private PostsViewModel mPostsViewModel;
+  private UserViewModel mUserViewModel;
+  private Disposable publishButtonObserve;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,19 +68,40 @@ public class CreateConversationPostActivity extends AppCompatActivity {
     ButterKnife.bind(this);
 
     setUpToolbar();
-    setUpViewModel();
-    initFirebase();
+    setViewModels();
+    setUserData();
     setRxClicks();
     setOnClicks();
   }
 
-  private void setUpViewModel() {
+  private void setViewModels() {
     mPostsViewModel = ViewModelProviders.of(this).get(PostsViewModel.class);
+    mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+  }
 
+  private void setUserData() {
+    mUserViewModel.getUserMainData().observe(this, userMainData -> {
+      userName.setText(userMainData.getUsername());
+      Picasso.get().load(userMainData.getImageURL()).placeholder(R.drawable.mytest).into(profileImage);
+    });
+  }
+
+  @Override
+  protected void onStop() {
+    super.onStop();
+    mUserViewModel.getUserMainData().removeObservers(this);
+    publishButtonObserve.dispose();
   }
 
   private void setRxClicks() {
-
+    publishButtonObserve = Observable
+        .combineLatest(
+            RxTextView.textChanges(questionField),
+            RxTextView.textChanges(descriptionField),
+            RxTextView.textChanges(tagsField),
+            (question, description, tags) -> question.toString().length() > 0 &&
+                description.toString().length() > 0 && tags.toString().length() > 0
+        ).subscribe(publishConversationButton::setEnabled);
   }
 
   private void setOnClicks() {
@@ -94,31 +122,32 @@ public class CreateConversationPostActivity extends AppCompatActivity {
     publishConversationButton.setOnClickListener(view -> sentDataToServer());
   }
 
-  private void sentDataToServer() {
-
+  private String getCurrentDate(){
     Calendar calendar = Calendar.getInstance();
-    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+    return DateFormat.getDateInstance().format(calendar.getTime());
+  }
 
+  private String getHashTags(){
     StringBuilder hashtags = new StringBuilder();
     for(int i = 0; i < chipGroup.getChildCount(); i++){
       hashtags.append(((Chip) chipGroup.getChildAt(i)).getText()).append(" ");
     }
+    return hashtags.toString();
+  }
 
-    HashMap<String, String> item = new HashMap<>();
-    item.put("userUrl", userReference.getKey());
-    item.put("title", questionField.getText().toString());
-    item.put("description", descriptionField.getText().toString());
-    item.put("hashtags", hashtags.toString());
-    item.put("countOfViews" , "0");
-    item.put("rating", "0");
-    item.put("comments", "0");
-    item.put("publicationTime", currentDate);
-    item.put("type","default");
+  private void sentDataToServer() {
 
-    PostData postData = new PostData();
+    mPostsViewModel.insert(new PostData(
+        questionField.getText().toString(),
+        descriptionField.getText().toString(),
+        getHashTags(),
+        mUserViewModel.getUserUid(),
+        mUserViewModel.getUserMainData().getValue().getUsername(),
+        mUserViewModel.getUserMainData().getValue().getImageURL(),
+        0,getCurrentDate(),0, 0,
+        "default",
+        mPostsViewModel.getKey()));
 
-    String unique_key = databaseReference.push().getKey();
-    databaseReference.child(unique_key).setValue(item);
     finish();
   }
 
@@ -133,15 +162,6 @@ public class CreateConversationPostActivity extends AppCompatActivity {
   public boolean onSupportNavigateUp() {
     onBackPressed();
     return super.onSupportNavigateUp();
-  }
-
-  private void initFirebase() {
-    firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    userId = firebaseUser.getUid();
-    //Get to current user information in database;
-    databaseReference = FirebaseDatabase.getInstance().getReference().child("PostData");
-    userReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
-    firebaseStorage = FirebaseStorage.getInstance();
   }
 
   private void setUpToolbar() {

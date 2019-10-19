@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.javaqa.ActivityUtils.LaunchActivityHelper;
 import com.example.javaqa.R;
-import com.example.javaqa.ui.activities.NewGameActivity;
+import com.example.javaqa.ui.activities.new_game_activities.NewGameActivity;
 import com.google.android.material.button.MaterialButton;
 
 public class GamesStatusFragment extends Fragment {
@@ -41,15 +41,19 @@ public class GamesStatusFragment extends Fragment {
   }
 
   private void findViews() {
-    newGameButton = view.findViewById(R.id.new_game_button);
     yourGamesRecyclerView = view.findViewById(R.id.your_turn_recycler_view);
     waitingGamesRecyclerView = view.findViewById(R.id.waiting_for_player_recycler_view);
     finishedGamesRecyclerView = view.findViewById(R.id.finished_games_recycler_view);
   }
 
   private void setClicks() {
-    newGameButton.setOnClickListener(view -> launchActivityHelper.launchActivity(getActivity(),
-        NewGameActivity.class, Intent.FLAG_ACTIVITY_NO_ANIMATION));
+    newGameButton.setOnClickListener(view -> launchActivity());
+  }
+
+  private void launchActivity() {
+    Intent intent = new Intent(getActivity(), NewGameActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+    startActivity(intent);
   }
 
   private void setUpFriendListAdapter() {

@@ -106,21 +106,25 @@ public class CreateConversationPostActivity extends AppCompatActivity {
 
   private void setOnClicks() {
     addChip.setOnClickListener(view -> {
-      Chip chip = new Chip(CreateConversationPostActivity.this);
-      chip.setCloseIconEnabled(true);
-      chip.setTextAppearance(android.R.style.TextAppearance_Material_Caption);
-      chip.setChipBackgroundColor(getResources().getColorStateList(R.color.light_orange));
-      chip.setTextColor(getResources().getColor(R.color.white));
-      chip.setTextSize(12);
-      chip.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-      chip.setText(tagsField.getText().toString());
-      chip.setOnCloseIconClickListener(view1 -> chipGroup.removeView(view1));
-      tagsField.setText("");
-      chipGroup.addView(chip,0);
+      if(!tagsField.getText().toString().isEmpty()) {
+        Chip chip = new Chip(CreateConversationPostActivity.this);
+        chip.setCloseIconEnabled(true);
+        chip.setTextAppearance(android.R.style.TextAppearance_Material_Caption);
+        chip.setChipBackgroundColor(getResources().getColorStateList(R.color.light_orange));
+        chip.setTextColor(getResources().getColor(R.color.white));
+        chip.setTextSize(12);
+        chip.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        chip.setText(tagsField.getText().toString());
+        chip.setOnCloseIconClickListener(view1 -> chipGroup.removeView(view1));
+        tagsField.setText("");
+        chipGroup.addView(chip, 0);
+      }
     });
 
     publishConversationButton.setOnClickListener(view -> sentDataToServer());
   }
+
+
 
   private String getCurrentDate(){
     Calendar calendar = Calendar.getInstance();

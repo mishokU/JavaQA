@@ -9,6 +9,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -16,6 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.javaqa.R;
 import com.example.javaqa.ui.adapters.ConversationAdapter;
 import com.example.javaqa.models.PostData;
+import com.example.javaqa.viewmodels.PostsViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfilePostFragment extends Fragment {
 
@@ -36,14 +40,7 @@ public class ProfilePostFragment extends Fragment {
   private RecyclerView.LayoutManager layoutManager;
   private ArrayList<PostData> conversationItems;
   private SwipeRefreshLayout swipeRefreshLayout;
-
-  private FirebaseDatabase firebaseDatabase;
-  private DatabaseReference databaseReference;
-  private FirebaseAuth firebaseAuth;
-  private FirebaseUser firebaseUser;
-  private FirebaseStorage firebaseStorage;
-  private String userId;
-
+  private PostsViewModel mPostViewModel;
 
   @Nullable
   @Override
@@ -51,34 +48,10 @@ public class ProfilePostFragment extends Fragment {
     view = inflater.inflate(R.layout.fragment_profile_posts,container,false);
 
     findViews();
-    initFirebase();
+    setPostViewModel();
     setUpAdapter();
 
     return view;
-  }
-
-  private void initFirebase() {
-    firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    userId = firebaseUser.getUid();
-    //Get to current user information in database;
-    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("Posts");
-    firebaseStorage = FirebaseStorage.getInstance();
-
-    loadUserPosts();
-  }
-
-  private void loadUserPosts() {
-    databaseReference.addValueEventListener(new ValueEventListener() {
-      @Override
-      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-      }
-
-      @Override
-      public void onCancelled(@NonNull DatabaseError databaseError) {
-
-      }
-    });
   }
 
   private void findViews() {
@@ -86,9 +59,15 @@ public class ProfilePostFragment extends Fragment {
     swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
   }
 
+  private void setPostViewModel() {
+
+  }
+
+
   private void setUpAdapter() {
     layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,true);
     ((LinearLayoutManager) layoutManager).setStackFromEnd(true);
+    adapter = new ConversationAdapter();
     conversationItems = new ArrayList<>();
     //adapter = new ConversationAdapter(conversationItems);
 
@@ -96,8 +75,6 @@ public class ProfilePostFragment extends Fragment {
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(adapter);
 
-    ((ConversationAdapter) adapter).setOnItemClickListener(position ->
-        Toast.makeText(getContext(),"Clicked" + position,Toast.LENGTH_SHORT).show());
   }
 
 }

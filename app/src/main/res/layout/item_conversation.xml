@@ -2,16 +2,12 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.MaterialComponents.CardView"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_marginTop="5dp"
-    android:layout_marginEnd="10dp"
-    android:layout_marginStart="10dp"
-    app:strokeColor="@color/start_bg_grad"
-    app:strokeWidth="1dp"
-    android:layout_marginBottom="5dp"
-    app:cardCornerRadius="10dp"
-    android:layout_height="wrap_content">
+    app:cardElevation="5dp"
+    android:layout_height="wrap_content"
+    android:transitionName="posts_item">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,40 +18,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_height="wrap_content">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/card_user_image"
-                    android:layout_centerVertical="true"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/mytest"/>
-
-                <TextView
-                    android:id="@+id/user_name"
-                    android:layout_toEndOf="@id/card_user_image"
-                    android:layout_width="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textAlignment="viewStart"
-                    android:layout_marginStart="5dp"
-                    android:text="Misha Usov"/>
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/title_view"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="5dp"
-                android:text=""/>
+                android:layout_margin="5dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textSize="16sp"
+                    android:ellipsize="end"
+                    android:text="ewjkofijweofjweofwjgeriogerjejoergjgeroigjeerojgerfweojfewofjweofjwojijfwoefjweoiw"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -66,7 +43,7 @@
                 <com.google.android.material.chip.ChipGroup
                     android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:id="@+id/hash_tags_chip_group"
                     app:singleLine="true">
 
@@ -77,7 +54,7 @@
 
             <RelativeLayout
                 android:id="@+id/statistic_block"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
@@ -161,10 +138,37 @@
                     android:layout_centerVertical="true"
                     android:text="0"/>
 
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/comments_count"
+                    android:layout_toStartOf="@id/card_user_image"
+                    android:gravity="end"
+                    android:textSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:paddingEnd="5dp"
+                    android:layout_marginStart="5dp"
+                    android:text="Alexander Alexandrovich"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/card_user_image"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/mytest"/>
+
             </RelativeLayout>
 
         </LinearLayout>
 
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
 
 </com.google.android.material.card.MaterialCardView>

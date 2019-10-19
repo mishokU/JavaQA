@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: me.saket:inboxrecyclerview:2.0.0-beta3@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/796cc72fe6a06532e3df4c76b6c8a9e0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/796cc72fe6a06532e3df4c76b6c8a9e0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/me.saket/inboxrecyclerview/2.0.0-beta3/e67b672eb5d1f576b6c8847cc1482daeb459abc3/inboxrecyclerview-2.0.0-beta3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,15 +1,15 @@
 package com.example.javaqa.ui.fragments.java_core.introduction;
 
+import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,17 +17,20 @@ import com.example.javaqa.ActivityUtils.SwapperHelper;
 import com.example.javaqa.R;
 import com.example.javaqa.ui.adapters.QueueItemListAdapter;
 import com.example.javaqa.models.QueueItem;
+import com.example.javaqa.ui.fragments.Bases.BaseLearnFragment;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
-public class QueueToJavaCompile extends Fragment {
+public class QueueToJavaCompile extends BaseLearnFragment {
 
   private View view;
   private RecyclerView recyclerView;
   private ArrayList<QueueItem> items;
   private RecyclerView.Adapter adapter;
   private RecyclerView.LayoutManager layoutManager;
-  private Button checkButton;
+  private MaterialButton checkButton;
+  private OnProgressListener progressListener;
 
   private final int correctCount = 4;
 
@@ -46,13 +49,14 @@ public class QueueToJavaCompile extends Fragment {
   private void checkButtonSetUp() {
     checkButton.setOnClickListener(view -> {
       if(checkCorrectOrder()){
-        checkButton.setBackground(getResources().getDrawable(R.drawable.blue_button_correct_game_style));
+        checkButton.setRippleColor(ColorStateList.valueOf(getResources().getColor(R.color.button_color)));
+        progressListener.onProgressSend("JavaCore",1);
         if(checkButton.getText().equals("Продолжить")){
           getActivity().finish();
         }
         checkButton.setText("Продолжить");
       } else {
-        checkButton.setBackground(getResources().getDrawable(R.drawable.blue_button_wrong_game_style));
+        checkButton.setRippleColor(ColorStateList.valueOf(getResources().getColor(R.color.red)));
       }
     });
   }
@@ -94,5 +98,22 @@ public class QueueToJavaCompile extends Fragment {
   private void findAllViews() {
     recyclerView = view.findViewById(R.id.queue_recycler_view);
     checkButton = view.findViewById(R.id.check_button);
+  }
+
+  @Override
+  public void onAttach(@NonNull Context context) {
+    super.onAttach(context);
+    if(context instanceof OnProgressListener){
+      progressListener = (OnProgressListener) context;
+    } else {
+      throw new RuntimeException(context.toString()
+          + "must implement progress listener");
+    }
+  }
+
+  @Override
+  public void onDetach() {
+    super.onDetach();
+    progressListener = null;
   }
 }

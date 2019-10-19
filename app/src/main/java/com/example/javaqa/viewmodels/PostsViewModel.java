@@ -23,13 +23,14 @@ public class PostsViewModel extends AndroidViewModel {
 
   public PostsViewModel(@NonNull Application application) {
     super(application);
+    setProgressBar();
     mPostsMainRepository = PostsMainRepository.getInstance(application);
     mPostsMainRepository.loadPosts();
   }
 
-  public void setProgressBar(ProgressBar mProgressBar) {
-    this.mProgressBar = mProgressBar;
-    this.mProgressBar.setVisibility(View.VISIBLE);
+  public void setProgressBar() {
+    mProgressBar = new ProgressBar(getApplication(),null,android.R.style.Widget_Material_ProgressBar);
+    mProgressBar.setVisibility(View.VISIBLE);
   }
 
   public void update(PostData postData){

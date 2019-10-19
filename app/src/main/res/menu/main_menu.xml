@@ -2,15 +2,16 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:title="profile"
-        android:icon="@drawable/user_96px"
-        app:showAsAction="ifRoom"
-        android:id="@+id/profile"/>
+        android:id="@+id/search"
+        android:title="search"
+        android:icon="@drawable/ic_search_white_24dp"
+        app:showAsAction="always"/>
 
     <item
         app:showAsAction="always"
-        android:icon="@drawable/appointment_reminders_48px"
+        android:icon="@drawable/ic_notifications_white_24dp"
         android:title="notifications"
         android:id="@+id/notifications"/>
 

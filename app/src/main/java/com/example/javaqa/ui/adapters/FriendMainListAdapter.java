@@ -13,15 +13,17 @@ import com.example.javaqa.models.FriendItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FriendMainListAdapter extends RecyclerView.Adapter {
 
-  private ArrayList<FriendItem> friends;
+  private List<FriendItem> friends;
   private OnItemClickListener onItemClickListener;
   private View view;
 
-  public FriendMainListAdapter(ArrayList<FriendItem> friendItemList) {
-    this.friends = friendItemList;
+  public void setFriends(List<FriendItem> friendItems) {
+    this.friends = friendItems;
+    notifyDataSetChanged();
   }
 
   public interface OnItemClickListener{

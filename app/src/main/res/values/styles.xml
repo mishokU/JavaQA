@@ -15,6 +15,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">@color/end_bg_grad</item>
         <item name="android:textColorSecondary">@color/white</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="ToolBarStyle" parent="Widget.Design.CollapsingToolbar">
@@ -23,14 +25,22 @@
     </style>
 
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="AppThemeAnimations" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Style for the second activity -->
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
+
+    <style name="NavigationDrawerStyle">
+        <item name="android:textSize">16sp</item><!-- text size in menu-->
+        <item name="android:listPreferredItemHeightSmall">56dp</item><!-- item size in menu-->
+        <item name="listPreferredItemHeightSmall">56dp</item><!-- item size in menu-->
+    </style>
+
 
 </resources>

@@ -75,42 +75,398 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/profile_tablayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:tabGravity="fill"
-            app:tabMode="fixed">
-
-        </com.google.android.material.tabs.TabLayout>
-
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/profile_nested_scroll_view"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:orientation="vertical"
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_height="wrap_content">
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/profile_view_pager"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
 
-    </androidx.core.widget.NestedScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/end_bg_grad"
-        app:borderWidth="0dp"
-        app:fabSize="normal"
-        app:layout_anchor="@null"
-        android:scaleType="fitCenter"
-        android:src="@android:drawable/ic_input_add"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="15dp"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/wins_statistic_circle">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:id="@+id/win_with_percents"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content">
+
+                            <ProgressBar
+                                android:id="@+id/win_progress_bar"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:layout_alignParentStart="true"
+                                style="?android:progressBarStyleHorizontal"
+                                android:progressDrawable="@drawable/progress_circle"
+                                android:layout_marginStart="0dp" />
+
+                            <TextView
+                                android:id="@+id/win_percent_from_progress_bar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="0"/>
+
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/win_with_percents"
+                            android:layout_centerHorizontal="true"
+                            android:text="Победы"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/lose_statistic_circle">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:id="@+id/lose_with_percents"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content">
+
+                            <ProgressBar
+                                android:id="@+id/lose_progress_bar"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                style="?android:progressBarStyleHorizontal"
+                                android:max="100"
+                                android:progressDrawable="@drawable/progress_circle"/>
+
+                            <TextView
+                                android:id="@+id/lose_percent_from_progress_bar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="0"/>
+
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/lose_with_percents"
+                            android:layout_centerHorizontal="true"
+                            android:text="Поражения"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/draws_statistic_circle">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:id="@+id/draw_with_percents"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="wrap_content">
+
+                            <ProgressBar
+                                android:id="@+id/draw_progress_bar"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                style="?android:progressBarStyleHorizontal"
+                                android:progressDrawable="@drawable/progress_circle"
+                                android:max="100"/>
+
+                            <TextView
+                                android:id="@+id/draw_percent_from_progress_bar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="0"/>
+
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/draw_with_percents"
+                            android:layout_centerHorizontal="true"
+                            android:text="Ничья"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/games_layout"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:background="@drawable/category_item_style"
+                        android:layout_marginBottom="5dp"
+                        android:layout_height="30dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textSize="18sp"
+                            android:layout_marginStart="10dp"
+                            android:text="Игры"/>
+
+                        <TextView
+                            android:id="@+id/games_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textSize="18sp"
+                            android:layout_marginEnd="10dp"
+                            android:text="0"
+                            android:layout_alignParentEnd="true" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:background="@drawable/category_item_style"
+                        android:layout_marginBottom="5dp"
+                        android:layout_height="30dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Игры без ошибок"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:id="@+id/games_without_lose_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textSize="18sp"
+                            android:layout_marginEnd="10dp"
+                            android:text="0"
+                            android:layout_alignParentEnd="true" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:background="@drawable/category_item_style"
+                        android:layout_height="30dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:textSize="18sp"
+                            android:text="Средний счет"/>
+
+                        <TextView
+                            android:id="@+id/average_counter_score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:textSize="18sp"
+                            android:layout_marginEnd="10dp"
+                            android:text="0"
+                            android:layout_alignParentEnd="true" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="25dp"
+                            android:background="@color/end_bg_grad"
+                            android:layout_marginStart="15dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Категории"
+                            android:textSize="18sp"
+                            android:layout_marginStart="5dp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:background="@drawable/category_item_style"
+                            android:layout_height="32dp"
+                            android:layout_marginBottom="3dp">
+
+                            <TextView
+                                android:id="@+id/java_core"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="25dp"
+                                android:layout_centerVertical="true"
+                                android:textSize="18sp"
+                                android:text="1 - Java Core"/>
+
+                            <ProgressBar
+                                android:id="@+id/java_core_progress_bar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:layout_toEndOf="@+id/java_core"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/category_item_progress_bar_style"
+                                android:max="100"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:background="@drawable/category_item_style"
+                            android:layout_height="32dp"
+                            android:layout_marginBottom="3dp">
+
+                            <TextView
+                                android:id="@+id/name_of_item"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="25dp"
+                                android:layout_centerVertical="true"
+                                android:textSize="18sp"
+                                android:text="2 - Build Tools"/>
+
+                            <ProgressBar
+                                android:id="@+id/build_tools_progress_bar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:layout_toEndOf="@+id/name_of_item"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/category_item_progress_bar_style"
+                                android:max="100"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:background="@drawable/category_item_style"
+                            android:layout_height="32dp"
+                            android:layout_marginBottom="3dp">
+
+                            <TextView
+                                android:id="@+id/vsc_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="25dp"
+                                android:layout_centerVertical="true"
+                                android:textSize="18sp"
+                                android:text="3 - VSC"/>
+
+                            <ProgressBar
+                                android:id="@+id/vsc_progress_bar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:layout_toEndOf="@+id/vsc_name"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/category_item_progress_bar_style"
+                                android:max="100"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:background="@drawable/category_item_style"
+                            android:layout_height="32dp"
+                            android:layout_marginBottom="3dp">
+
+                            <TextView
+                                android:id="@+id/databases_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="25dp"
+                                android:layout_centerVertical="true"
+                                android:textSize="18sp"
+                                android:text="4 - Databases"/>
+
+                            <ProgressBar
+                                android:id="@+id/databases_progress_bar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:layout_toEndOf="@+id/databases_name"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/category_item_progress_bar_style"
+                                android:max="100"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

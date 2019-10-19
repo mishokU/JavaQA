@@ -6,7 +6,14 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/learning_toolbar"
+        android:layout_width="match_parent"
+        android:background="@color/end_bg_grad"
+        app:titleTextColor="@color/white"
+        android:layout_height="wrap_content" />
+
+    <!-- <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/end_bg_grad">
@@ -23,7 +30,7 @@
 
         </androidx.appcompat.widget.SearchView>
 
-    </RelativeLayout>
+    </RelativeLayout> -->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -166,7 +173,6 @@
                             android:id="@+id/picture4"
                             android:scaleType="centerInside"
                             android:background="@drawable/learning_item_level_style"
-                            android:src="@drawable/type_48px"
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"/>
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="@string/archive"
+        android:id="@+id/archive_button"
+        android:icon="@drawable/ic_archive_black_24dp"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/chats_button"
+        android:title="@string/chats"
+        android:icon="@drawable/ic_email_white_24dp"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/friends_button"
+        android:title="@string/friends"
+        android:icon="@drawable/ic_contacts_black_24dp"
+        app:showAsAction="always"/>
+
+    <item
+        android:title="@string/play_game"
+        android:id="@+id/play_game"
+        android:icon="@drawable/controller_96px"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/learning_button"
+        android:icon="@drawable/student_96px"
+        android:title="@string/learn"
+        app:showAsAction="always"/>
+
+</menu>

@@ -1,6 +1,9 @@
 package com.example.javaqa.ui.holders;
 
+import android.animation.Animator;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -82,10 +85,11 @@ public class ConversationItemHolder extends RecyclerView.ViewHolder {
     if(hashtag != null) {
       for (String c : hashtag.split(" ")) {
         Chip chip = new Chip(itemView.getContext());
+        chip.setMinHeight(30);
         chip.setTextAppearance(android.R.style.TextAppearance_Material_Caption);
         chip.setChipBackgroundColor(itemView.getResources().getColorStateList(R.color.light_orange));
         chip.setTextColor(itemView.getResources().getColor(R.color.white));
-        chip.setTextSize(12);
+        chip.setTextSize(10);
         chip.setCloseIconVisible(false);
         chip.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         chip.setText(c);

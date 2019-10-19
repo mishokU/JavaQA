@@ -26,7 +26,6 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.javaqa.ui.activities.ProfileActivity.DATA_NAME;
 
 public class CreatePostActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -90,25 +89,22 @@ public class CreatePostActivity extends AppCompatActivity implements View.OnClic
   @Override
   public void onClick(View view) {
     if(view == insert) {
-      //launchActivity(OpenAllPosts.class);
+      //cahngeActivity(OpenAllPosts.class);
     } else if(view == openCamera) {
-      //launchActivity(OpenCamera);
+      //cahngeActivity(OpenCamera);
     } else if(view == openGallery) {
-      //launchActivity(OpenGallery);
+      //cahngeActivity(OpenGallery);
     } else if(view == publishPost) {
       createPost();
     }
   }
 
   private void createPost() {
-    sharedPreferences = getPreferences(MODE_PRIVATE);
-    String username = sharedPreferences.getString(DATA_NAME, "");
 
     Date d = new Date();
     CharSequence time = DateFormat.format("yyyy-MM-dd", d.getTime());
 
     HashMap<String, String> postData = new HashMap<>();
-    postData.put("User Name", username);
     postData.put("Text", postText.getText().toString());
     postData.put("Views" , "0");
     postData.put("Rating", "0");

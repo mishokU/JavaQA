@@ -1,6 +1,5 @@
 package com.example.javaqa.ui.adapters;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.javaqa.R;
 import com.example.javaqa.ui.holders.ConversationItemHolder;
 import com.example.javaqa.models.PostData;
-import com.example.javaqa.viewmodels.UserViewModel;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
 
 public class ConversationAdapter extends RecyclerView.Adapter<ConversationItemHolder> {
 

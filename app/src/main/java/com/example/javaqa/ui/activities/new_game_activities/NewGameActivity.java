@@ -1,5 +1,6 @@
-package com.example.javaqa.ui.activities;
+package com.example.javaqa.ui.activities.new_game_activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,25 +9,22 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.javaqa.R;
 import com.example.javaqa.ui.activities.new_game_activities.ChoiceWeaponAlertDialog;
+import com.example.javaqa.ui.activities.new_game_activities.StartNewGame;
 import com.example.javaqa.ui.adapters.FriendMainListAdapter;
 import com.example.javaqa.models.FriendItem;
+import com.example.javaqa.viewmodels.UserViewModel;
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -39,16 +37,12 @@ public class NewGameActivity extends AppCompatActivity implements View.OnClickLi
   private Toolbar toolbar;
 
   private RecyclerView.LayoutManager layoutManager;
-  private RecyclerView.Adapter friendMainListAdapter;
+  private FriendMainListAdapter friendMainListAdapter;
   private ArrayList<FriendItem> friendItemList;
   private SwipeRefreshLayout swipeRefreshLayout;
 
-  private DatabaseReference databaseReference;
-  private DatabaseReference userReference;
-  private FirebaseAuth firebaseAuth;
-  private FirebaseUser firebaseUser;
-  private FirebaseStorage firebaseStorage;
-  private String userId;
+  private UserViewModel mUserViewModel;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -57,66 +51,20 @@ public class NewGameActivity extends AppCompatActivity implements View.OnClickLi
     ButterKnife.bind(this);
 
     findViews();
+    setViewModels();
     setUpToolbar();
     setClicks();
-    initFirebase();
     setUpFriendListAdapter();
     setUpSwipeRefresh();
   }
 
-  private void initFirebase() {
-    firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    databaseReference = FirebaseDatabase.getInstance().getReference();
-    userId = firebaseUser.getUid();
-    //Get to current user information in database;
-    userReference = databaseReference.child("Users").child(userId).child("friends");
-    firebaseStorage = FirebaseStorage.getInstance();
-
-    loadFriends();
-  }
-
-  private void loadFriends() {
-    userReference.addValueEventListener(new ValueEventListener() {
-      @Override
-      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        //Get reference of all users
-        String userReference = (String)dataSnapshot.child("userRef").getValue();
-        loadCurrentUserInformation(userReference);
-      }
-
-      @Override
-      public void onCancelled(@NonNull DatabaseError databaseError) {
-
-      }
-    });
-  }
-
-  private void loadCurrentUserInformation(String userReference) {
-    DatabaseReference currentUserRef = databaseReference.child("Users").child(userReference).child("userData");
-
-    currentUserRef.addValueEventListener(new ValueEventListener() {
-      @Override
-      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        String currentUserName = (String)dataSnapshot.child("username").getValue();
-        String currentUserImage = (String)dataSnapshot.child("imageURL").getValue();
-
-        FriendItem friendItem = new FriendItem(currentUserName, currentUserImage);
-
-        friendItemList.add(friendItem);
-        friendMainListAdapter.notifyDataSetChanged();
-      }
-
-      @Override
-      public void onCancelled(@NonNull DatabaseError databaseError) {
-
-      }
-    });
+  private void setViewModels() {
+    mUserViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
   }
 
   private void setUpSwipeRefresh() {
     swipeRefreshLayout.setOnRefreshListener(() -> {
       friendItemList.clear();
-      loadFriends();
       swipeRefreshLayout.setRefreshing(false);
     });
   }
@@ -161,14 +109,12 @@ public class NewGameActivity extends AppCompatActivity implements View.OnClickLi
     layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
     ((LinearLayoutManager) layoutManager).setStackFromEnd(true);
     friendItemList = new ArrayList<>();
-    friendMainListAdapter = new FriendMainListAdapter(friendItemList);
+    friendMainListAdapter = new FriendMainListAdapter();
 
     recyclerView.setHasFixedSize(true);
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(friendMainListAdapter);
 
-    ((FriendMainListAdapter) friendMainListAdapter).setOnItemClickListener(position ->
-        Toast.makeText(this,"Clicked" + position,Toast.LENGTH_SHORT).show());
   }
 
   @Override
@@ -188,6 +134,13 @@ public class NewGameActivity extends AppCompatActivity implements View.OnClickLi
 
   }
 
+  public void launchActivity(Class toActivity,String weapon){
+    Intent intent = new Intent(this,toActivity);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+    intent.putExtra("weapon", weapon);
+    startActivity(intent);
+  }
+
   private void startGameWithFacebookFriend() {
     Toast.makeText(this,"facebook",Toast.LENGTH_SHORT).show();
   }
@@ -198,5 +151,6 @@ public class NewGameActivity extends AppCompatActivity implements View.OnClickLi
 
   public void fight(String weapon) {
     Toast.makeText(this,"weapon" + weapon, Toast.LENGTH_SHORT).show();
+    launchActivity(StartNewGame.class,weapon);
   }
 }

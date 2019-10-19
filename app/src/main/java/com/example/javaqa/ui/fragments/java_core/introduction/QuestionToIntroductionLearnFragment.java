@@ -1,22 +1,23 @@
 package com.example.javaqa.ui.fragments.java_core.introduction;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.example.javaqa.R;
+import com.example.javaqa.ui.fragments.Bases.BaseLearnFragment;
+import com.google.android.material.button.MaterialButton;
 
-public class QuestionToIntroductionFragment extends Fragment {
+public class QuestionToIntroductionLearnFragment extends BaseLearnFragment {
 
   private View view;
-  private Button checkButton;
+  private MaterialButton checkButton;
   private RadioGroup radioGroup;
 
   @Nullable
@@ -34,10 +35,11 @@ public class QuestionToIntroductionFragment extends Fragment {
   private void checkButtonSetUp() {
     checkButton.setOnClickListener(view -> {
       if(checkCorrectAnswer()){
-        checkButton.setBackground(getResources().getDrawable(R.drawable.blue_button_correct_game_style));
         checkButton.setText("Продолжить");
+        checkButton.setRippleColor(ColorStateList.valueOf(getResources().getColor(R.color.button_color)));
+        progressListener.onProgressSend("JavaCore",1);
       } else {
-        checkButton.setBackground(getResources().getDrawable(R.drawable.blue_button_wrong_game_style));
+        checkButton.setRippleColor(ColorStateList.valueOf(getResources().getColor(R.color.red)));
       }
     });
   }
@@ -51,4 +53,5 @@ public class QuestionToIntroductionFragment extends Fragment {
     checkButton = view.findViewById(R.id.check_button);
     radioGroup = view.findViewById(R.id.radio_group);
   }
+
 }

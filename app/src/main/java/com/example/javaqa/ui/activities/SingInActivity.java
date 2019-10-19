@@ -84,7 +84,7 @@ public class SingInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void launchActivity() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
         finish();
     }

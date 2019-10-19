@@ -11,7 +11,9 @@
         android:fullBackupContent="@xml/backup_descriptor"
         android:allowBackup="true">
 
-        <activity android:name=".ui.activities.MainActivity">
+        <activity android:name=".ui.activities.MainActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW"/>
@@ -27,17 +29,17 @@
 
         <activity android:name=".ui.activities.StartActivity"/>
 
-        <activity android:name=".ui.activities.NewGameActivity"
+        <activity android:name=".ui.activities.new_game_activities.NewGameActivity"
             android:parentActivityName=".ui.activities.MainActivity"/>
 
-        <activity android:name=".ui.activities.ProfileActivity"
+        <activity android:name=".ui.activities.profile_activities.ProfileActivity"
             android:parentActivityName=".ui.activities.MainActivity"/>
 
-        <activity android:name=".ui.activities.java_core.IntroductionActivity"
-            android:parentActivityName=".ui.activities.MainActivity"/>
+        <activity android:name=".ui.activities.learning.java_core.IntroductionActivity"
+            android:parentActivityName=".ui.activities.learning.LearnActivity"/>
 
         <activity android:name=".ui.activities.profile_activities.ProfileEditActivity"
-            android:parentActivityName=".ui.activities.ProfileActivity">
+            android:parentActivityName=".ui.activities.profile_activities.ProfileActivity">
         </activity>
 
         <activity android:name=".ui.activities.profile_activities.CreatePostActivity"
@@ -48,6 +50,10 @@
         <activity android:name=".ui.activities.OpenConversationItem"/>
 
         <activity android:name=".ui.activities.new_game_activities.StartNewGame"/>
+
+        <activity android:name=".ui.activities.learning.LearnActivity"/>
+
+        <activity android:name=".ui.activities.new_game_activities.GamesStatusActivity"/>
 
     </application>
 

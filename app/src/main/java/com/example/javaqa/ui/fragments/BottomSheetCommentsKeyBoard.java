@@ -1,9 +1,12 @@
 package com.example.javaqa.ui.fragments;
 
+import android.app.Dialog;
+import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -20,6 +23,8 @@ import com.example.javaqa.models.UserMainData;
 import com.example.javaqa.viewmodels.CommentsViewModel;
 import com.example.javaqa.viewmodels.UserViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -44,6 +49,11 @@ public class BottomSheetCommentsKeyBoard extends BottomSheetDialogFragment {
     return mView;
   }
 
+  @Override
+  public Dialog onCreateDialog(Bundle savedInstanceState) {
+    return super.onCreateDialog(savedInstanceState);
+  }
+
   private void findViews() {
     mInputField = mView.findViewById(R.id.input_message);
     mSendCommentButton = mView.findViewById(R.id.post_comment_button);
@@ -61,6 +71,7 @@ public class BottomSheetCommentsKeyBoard extends BottomSheetDialogFragment {
 
   private void sendComment(){
     mSendCommentButton.setOnClickListener(view -> {
+
       CommentsModel model = new CommentsModel();
       model.setAnswer(mInputField.getText().toString());
       model.setUserName(mUserMainData.getUsername());
@@ -72,5 +83,9 @@ public class BottomSheetCommentsKeyBoard extends BottomSheetDialogFragment {
       mInputField.setText("");
       dismiss();
     });
+  }
+
+  public void showKeyBoard() {
+    UIUtil.showKeyboard(getContext(), mInputField);
   }
 }

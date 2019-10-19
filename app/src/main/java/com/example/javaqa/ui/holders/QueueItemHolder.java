@@ -1,6 +1,7 @@
 package com.example.javaqa.ui.holders;
 
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,5 +31,6 @@ public class QueueItemHolder extends RecyclerView.ViewHolder {
         }
       }
     });
+
   }
 }

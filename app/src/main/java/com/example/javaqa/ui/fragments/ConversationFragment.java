@@ -1,5 +1,6 @@
 package com.example.javaqa.ui.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.javaqa.R;
+import com.example.javaqa.models.PostData;
 import com.example.javaqa.ui.activities.OpenConversationItem;
 import com.example.javaqa.ui.adapters.ConversationAdapter;
 import com.example.javaqa.viewmodels.PostsViewModel;
@@ -29,10 +31,9 @@ import java.util.Objects;
 public class ConversationFragment extends Fragment {
 
   private View mView;
+  private PostItemListener postItemListener;
   private RecyclerView mRecyclerView;
-  private SearchView mSearchView;
   private ProgressBar mProgressBar;
-  private AppCompatSpinner mSpinner;
   private SwipeRefreshLayout mSwipeRefreshLayout;
 
   private ConversationAdapter mAdapter;
@@ -40,6 +41,10 @@ public class ConversationFragment extends Fragment {
 
   private PostsViewModel mPostsViewModel;
   private UserViewModel mUserViewModel;
+
+  public interface PostItemListener{
+    void onPostInput(PostData postData);
+  }
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +56,7 @@ public class ConversationFragment extends Fragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     mView = inflater.inflate(R.layout.fragment_conversation,container,false);
+    setRetainInstance(true);
 
     findAllViews();
     setUpAdapter();
@@ -62,14 +68,11 @@ public class ConversationFragment extends Fragment {
   }
 
   private void observePosts() {
-    mPostsViewModel.setProgressBar(mProgressBar);
     mPostsViewModel.getAllPosts().observe(this, postData -> mAdapter.setPosts(postData));
   }
 
   private void findAllViews() {
     mRecyclerView = mView.findViewById(R.id.public_conversation_place);
-    mSearchView = mView.findViewById(R.id.search_conversation);
-    mSpinner = mView.findViewById(R.id.drop_down_menu);
     mSwipeRefreshLayout = mView.findViewById(R.id.swipeRefreshLayout);
     mProgressBar = mView.findViewById(R.id.progress_bar);
   }
@@ -81,7 +84,7 @@ public class ConversationFragment extends Fragment {
         android.R.layout.simple_spinner_item);
 
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    mSpinner.setAdapter(adapter);
+    //mSpinner.setAdapter(adapter);
   }
 
   private void setUpAdapter() {
@@ -95,11 +98,30 @@ public class ConversationFragment extends Fragment {
   }
 
   private void openConversationItem(int position) {
-    Intent intent = new Intent(getActivity(), OpenConversationItem.class);
+    postItemListener.onPostInput(mAdapter.getPost(position));
+
+    /*Intent intent = new Intent(getActivity(), OpenConversationItem.class);
     Bundle bundle = new Bundle();
     bundle.putSerializable("ItemData", mAdapter.getPost(position));
     intent.putExtras(bundle);
-    startActivity(intent);
+    startActivity(intent);*/
+  }
+
+  @Override
+  public void onAttach(@NonNull Context context) {
+    super.onAttach(context);
+    if(context instanceof PostItemListener){
+      postItemListener = (PostItemListener) context;
+    } else {
+      throw new RuntimeException(context.toString()
+      + "must implement item post listener");
+    }
+  }
+
+  @Override
+  public void onDetach() {
+    super.onDetach();
+    postItemListener = null;
   }
 
   private void setUpSwipeRefreshLayout(){

@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.javaqa.ui.activities.NewGameActivity;
-
 import java.util.Objects;
 
 public class ChoiceWeaponAlertDialog extends DialogFragment {
@@ -24,11 +22,11 @@ public class ChoiceWeaponAlertDialog extends DialogFragment {
   @NonNull
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
-    String[] weapons = {"Java Core", "Build Tools", "Databases", "VCS"};
+    String[] weapons = {"JavaCore", "BuildTools", "Databases", "VCS"};
     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
     builder.setTitle("Choice weapon!")
         .setSingleChoiceItems(weapons, 0, (dialogInterface, i) -> weapon = weapons[i])
-        .setPositiveButton("Fight", (dialogInterface, i) -> ((NewGameActivity) Objects.requireNonNull(getActivity())).fight(weapon))
+        .setPositiveButton("Fight", (dialogInterface, i) -> ((GamesStatusActivity) Objects.requireNonNull(getActivity())).fight(weapon))
         .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.cancel());
     return builder.create();
   }

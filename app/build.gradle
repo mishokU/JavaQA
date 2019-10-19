@@ -88,8 +88,10 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.23.2'
     //RxFirebase
     implementation 'com.github.FrangSierra:RxFirebase:1.5.6'
+    implementation 'org.apache.commons:commons-math3:3.6.1'
 
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
+    implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
 
     //kapt "com.android.databinding:compiler:3.2.0-alpha10"
 

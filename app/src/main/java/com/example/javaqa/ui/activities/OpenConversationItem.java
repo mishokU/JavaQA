@@ -53,10 +53,8 @@ public class OpenConversationItem extends AppCompatActivity {
   @BindView(R.id.count_of_views) TextView countOfViews;
   @BindView(R.id.comments_recycler_view) RecyclerView recyclerView;
   @BindView(R.id.spinner) Spinner spinner;
-  @BindView(R.id.toolbar) Toolbar toolbar;
   @BindView(R.id.comments_count) TextView commentsCount;
   @BindView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
-  @BindView(R.id.fab) FloatingActionButton openKeyBoardFab;
   @BindView(R.id.progress_bar) ProgressBar progressBar;
 
   private PostAnswerAdapter mPostAnswerAdapter;
@@ -92,12 +90,7 @@ public class OpenConversationItem extends AppCompatActivity {
   }
 
   private void addComment() {
-    openKeyBoardFab.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        bottomSheetCommentsKeyBoard.show(getSupportFragmentManager(), "input");
-      }
-    });
+
   }
 
   private void setCommentsViewModel() {
@@ -157,11 +150,7 @@ public class OpenConversationItem extends AppCompatActivity {
   }
 
   private void setUpToolbar() {
-    setSupportActionBar(toolbar);
-    if(getSupportActionBar() != null) {
-      getSupportActionBar().setTitle("Обсуждения");
-      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
+
   }
 
   private void catchDataFromBundle() {

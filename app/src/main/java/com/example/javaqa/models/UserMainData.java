@@ -43,8 +43,8 @@ public class UserMainData  {
   }
 
   private String email;
-  private String imageURL;
-  private String level;
+  private String imageURL = "default";
+  private String level = "0";
   private String password;
   private String username;
 
